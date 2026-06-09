@@ -74,38 +74,57 @@ export function Hero() {
         </div>
 
         {/* Imagem à direita */}
-        <div className="lg:col-span-5 relative flex justify-center lg:justify-end items-end -mt-8 sm:-mt-12 lg:-mt-20">
+        <div className="lg:col-span-5 relative flex justify-center lg:justify-end items-center -mt-8 sm:-mt-12 lg:-mt-16">
           <div className="relative w-full flex justify-center lg:justify-end">
-            {/* Halo / círculo de fundo */}
+            {/* Composição circular estática (estilo "Five Conda") */}
             <div
               aria-hidden="true"
-              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[110%] aspect-square max-w-[520px] pointer-events-none"
+              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[115%] aspect-square max-w-[560px] pointer-events-none"
             >
-              {/* glow externo suave */}
+              {/* Ondas concêntricas externas */}
+              <div className="absolute inset-0 rounded-full border border-white/15" />
+              <div className="absolute inset-[6%] rounded-full border border-white/20" />
+              <div className="absolute inset-[12%] rounded-full border border-white/25" />
+              <div className="absolute inset-[18%] rounded-full border border-white/30" />
+
+              {/* Disco sólido central (azul mais claro) */}
               <div
-                className="absolute inset-0 rounded-full blur-3xl opacity-70"
+                className="absolute inset-[24%] rounded-full overflow-hidden"
                 style={{
                   background:
-                    "radial-gradient(circle at 50% 50%, rgba(245,166,35,0.45) 0%, rgba(0,163,215,0.25) 45%, transparent 70%)",
+                    "radial-gradient(circle at 35% 30%, #4ec5e8 0%, #00A3D7 55%, #0077a8 100%)",
+                  boxShadow:
+                    "0 20px 60px -10px rgba(0,61,122,0.45), inset 0 0 60px rgba(255,255,255,0.10)",
                 }}
-              />
-              {/* círculo sólido translúcido */}
+              >
+                {/* Listras diagonais decorativas dentro do círculo */}
+                <div
+                  className="absolute inset-0 opacity-25"
+                  style={{
+                    backgroundImage:
+                      "repeating-linear-gradient(135deg, rgba(255,255,255,0.9) 0 6px, transparent 6px 22px)",
+                    maskImage:
+                      "radial-gradient(circle at 50% 45%, black 30%, transparent 70%)",
+                    WebkitMaskImage:
+                      "radial-gradient(circle at 50% 45%, black 30%, transparent 70%)",
+                  }}
+                />
+              </div>
+
+              {/* Brilho externo suave */}
               <div
-                className="absolute inset-[8%] rounded-full backdrop-blur-sm border border-white/15"
+                className="absolute inset-0 rounded-full blur-3xl opacity-50 -z-10"
                 style={{
                   background:
-                    "radial-gradient(circle at 30% 30%, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.05) 55%, rgba(0,61,122,0.10) 100%)",
+                    "radial-gradient(circle at 50% 50%, rgba(78,197,232,0.55) 0%, transparent 65%)",
                 }}
               />
-              {/* anel decorativo */}
-              <div className="absolute inset-[4%] rounded-full border border-white/20" />
-              <div className="absolute inset-[14%] rounded-full border border-white/10" />
             </div>
 
             <img
               src={engenheiroAsset.url}
               alt="Engenheiro analisando planta de imóvel"
-              className="relative w-full max-w-[320px] sm:max-w-[420px] lg:max-w-none lg:w-full h-auto object-contain drop-shadow-2xl"
+              className="relative w-full max-w-[300px] sm:max-w-[380px] lg:max-w-[460px] h-auto object-contain drop-shadow-2xl"
             />
           </div>
         </div>
