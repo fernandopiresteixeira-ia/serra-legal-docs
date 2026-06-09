@@ -70,9 +70,9 @@ export function Servicos() {
           src={casalAsset.url}
           alt=""
           aria-hidden="true"
-          className="absolute inset-0 w-full h-full object-cover object-[20%_35%] sm:object-[25%_35%] lg:object-[30%_35%]"
+          className="absolute inset-0 w-full h-full object-cover object-[50%_5%]"
         />
-        <div className="absolute inset-0" style={{ background: "rgba(255, 255, 255, 0.88)" }} />
+        <div className="absolute inset-0" style={{ background: "rgba(255, 255, 255, 0.85)" }} />
       </div>
       {/* Bottom half: azul sólido */}
       <div className="absolute inset-x-0 bottom-0 h-1/2 bg-[#0073C6]" />
