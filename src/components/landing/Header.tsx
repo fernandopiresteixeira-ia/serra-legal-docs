@@ -18,8 +18,8 @@ export function Header() {
       }`}
     >
       <div className="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-        <a href="#top" className="flex items-center h-full py-2 -ml-1">
-          <span className="font-display font-bold tracking-wide text-xl sm:text-2xl text-white whitespace-nowrap">
+        <a href="#top" className="flex items-center h-full py-2">
+          <span className="font-display font-bold tracking-wide text-2xl sm:text-3xl text-white whitespace-nowrap -ml-2 sm:-ml-3">
             Russell Bedford <span className="font-medium opacity-90">Brasil</span>
           </span>
         </a>
