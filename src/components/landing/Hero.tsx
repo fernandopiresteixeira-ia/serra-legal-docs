@@ -89,29 +89,22 @@ export function Hero() {
                 <div className="absolute inset-[12%] rounded-full border border-white/25" />
                 <div className="absolute inset-[18%] rounded-full border border-white/30" />
 
-                {/* Disco sólido central (azul mais claro) */}
+                {/* Disco striado central (recolorido para azul do site) */}
                 <div
                   className="absolute inset-[24%] rounded-full overflow-hidden"
                   style={{
-                    background:
-                      "radial-gradient(circle at 35% 30%, #4ec5e8 0%, #00A3D7 55%, #0077a8 100%)",
-                    boxShadow:
-                      "0 20px 60px -10px rgba(0,61,122,0.45), inset 0 0 60px rgba(255,255,255,0.10)",
+                    backgroundColor: "#00A3D7",
+                    opacity: 0.4,
+                    WebkitMaskImage: `url(${stripedCircleAsset.url})`,
+                    maskImage: `url(${stripedCircleAsset.url})`,
+                    WebkitMaskSize: "contain",
+                    maskSize: "contain",
+                    WebkitMaskRepeat: "no-repeat",
+                    maskRepeat: "no-repeat",
+                    WebkitMaskPosition: "center",
+                    maskPosition: "center",
                   }}
-                >
-                  {/* Listras diagonais decorativas dentro do círculo */}
-                  <div
-                    className="absolute inset-0 opacity-25"
-                    style={{
-                      backgroundImage:
-                        "repeating-linear-gradient(135deg, rgba(255,255,255,0.9) 0 6px, transparent 6px 22px)",
-                      maskImage:
-                        "radial-gradient(circle at 50% 45%, black 30%, transparent 70%)",
-                      WebkitMaskImage:
-                        "radial-gradient(circle at 50% 45%, black 30%, transparent 70%)",
-                    }}
-                  />
-                </div>
+                />
 
                 {/* Brilho externo suave */}
                 <div
