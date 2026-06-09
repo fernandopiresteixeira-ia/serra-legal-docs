@@ -75,57 +75,59 @@ export function Hero() {
 
         {/* Imagem à direita */}
         <div className="lg:col-span-5 relative flex justify-center lg:justify-end items-center -mt-8 sm:-mt-12 lg:-mt-16">
-          <div className="relative w-full flex justify-center lg:justify-end">
-            {/* Composição circular estática (estilo "Five Conda") */}
-            <div
-              aria-hidden="true"
-              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[170%] aspect-square max-w-[820px] pointer-events-none"
-            >
-              {/* Ondas concêntricas externas */}
-              <div className="absolute inset-0 rounded-full border border-white/15" />
-              <div className="absolute inset-[6%] rounded-full border border-white/20" />
-              <div className="absolute inset-[12%] rounded-full border border-white/25" />
-              <div className="absolute inset-[18%] rounded-full border border-white/30" />
-
-              {/* Disco sólido central (azul mais claro) */}
+          <div className="relative flex justify-center lg:justify-end w-full">
+            <div className="relative inline-block">
+              {/* Composição circular estática (estilo "Five Conda") */}
               <div
-                className="absolute inset-[24%] rounded-full overflow-hidden"
-                style={{
-                  background:
-                    "radial-gradient(circle at 35% 30%, #4ec5e8 0%, #00A3D7 55%, #0077a8 100%)",
-                  boxShadow:
-                    "0 20px 60px -10px rgba(0,61,122,0.45), inset 0 0 60px rgba(255,255,255,0.10)",
-                }}
+                aria-hidden="true"
+                className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[170%] aspect-square max-w-[820px] pointer-events-none"
               >
-                {/* Listras diagonais decorativas dentro do círculo */}
+                {/* Ondas concêntricas externas */}
+                <div className="absolute inset-0 rounded-full border border-white/15" />
+                <div className="absolute inset-[6%] rounded-full border border-white/20" />
+                <div className="absolute inset-[12%] rounded-full border border-white/25" />
+                <div className="absolute inset-[18%] rounded-full border border-white/30" />
+
+                {/* Disco sólido central (azul mais claro) */}
                 <div
-                  className="absolute inset-0 opacity-25"
+                  className="absolute inset-[24%] rounded-full overflow-hidden"
                   style={{
-                    backgroundImage:
-                      "repeating-linear-gradient(135deg, rgba(255,255,255,0.9) 0 6px, transparent 6px 22px)",
-                    maskImage:
-                      "radial-gradient(circle at 50% 45%, black 30%, transparent 70%)",
-                    WebkitMaskImage:
-                      "radial-gradient(circle at 50% 45%, black 30%, transparent 70%)",
+                    background:
+                      "radial-gradient(circle at 35% 30%, #4ec5e8 0%, #00A3D7 55%, #0077a8 100%)",
+                    boxShadow:
+                      "0 20px 60px -10px rgba(0,61,122,0.45), inset 0 0 60px rgba(255,255,255,0.10)",
+                  }}
+                >
+                  {/* Listras diagonais decorativas dentro do círculo */}
+                  <div
+                    className="absolute inset-0 opacity-25"
+                    style={{
+                      backgroundImage:
+                        "repeating-linear-gradient(135deg, rgba(255,255,255,0.9) 0 6px, transparent 6px 22px)",
+                      maskImage:
+                        "radial-gradient(circle at 50% 45%, black 30%, transparent 70%)",
+                      WebkitMaskImage:
+                        "radial-gradient(circle at 50% 45%, black 30%, transparent 70%)",
+                    }}
+                  />
+                </div>
+
+                {/* Brilho externo suave */}
+                <div
+                  className="absolute inset-0 rounded-full blur-3xl opacity-50 -z-10"
+                  style={{
+                    background:
+                      "radial-gradient(circle at 50% 50%, rgba(78,197,232,0.55) 0%, transparent 65%)",
                   }}
                 />
               </div>
 
-              {/* Brilho externo suave */}
-              <div
-                className="absolute inset-0 rounded-full blur-3xl opacity-50 -z-10"
-                style={{
-                  background:
-                    "radial-gradient(circle at 50% 50%, rgba(78,197,232,0.55) 0%, transparent 65%)",
-                }}
+              <img
+                src={engenheiroAsset.url}
+                alt="Engenheiro analisando planta de imóvel"
+                className="relative block w-[300px] sm:w-[380px] lg:w-[460px] h-auto object-contain drop-shadow-2xl"
               />
             </div>
-
-            <img
-              src={engenheiroAsset.url}
-              alt="Engenheiro analisando planta de imóvel"
-              className="relative w-full max-w-[300px] sm:max-w-[380px] lg:max-w-[460px] h-auto object-contain drop-shadow-2xl"
-            />
           </div>
         </div>
       </div>
