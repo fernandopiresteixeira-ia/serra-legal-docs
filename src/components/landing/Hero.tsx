@@ -1,5 +1,6 @@
 import { Icon } from "@iconify/react";
 import heroBg from "@/assets/hero-construcao.jpg";
+import { InfiniteGrid } from "@/components/ui/the-infinite-grid";
 
 export function Hero() {
   return (
@@ -19,6 +20,12 @@ export function Hero() {
           background:
             "linear-gradient(to bottom, rgba(0,163,215,0.80), rgba(0,163,215,0.90))",
         }}
+      />
+      <InfiniteGrid
+        baseColor="rgba(255,255,255,0.10)"
+        activeColor="rgba(245,166,35,0.55)"
+        cellSize={40}
+        revealRadius={300}
       />
 
       <div className="relative z-10 max-w-4xl mx-auto px-6 py-20 text-center">
