@@ -74,12 +74,40 @@ export function Hero() {
         </div>
 
         {/* Imagem à direita */}
-        <div className="lg:col-span-5 relative flex justify-center lg:justify-end items-end">
-          <img
-            src={engenheiroAsset.url}
-            alt="Engenheiro analisando planta de imóvel"
-            className="w-full max-w-[320px] sm:max-w-[420px] lg:max-w-none lg:w-full h-auto object-contain drop-shadow-2xl"
-          />
+        <div className="lg:col-span-5 relative flex justify-center lg:justify-end items-end -mt-8 sm:-mt-12 lg:-mt-20">
+          <div className="relative w-full flex justify-center lg:justify-end">
+            {/* Halo / círculo de fundo */}
+            <div
+              aria-hidden="true"
+              className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[110%] aspect-square max-w-[520px] pointer-events-none"
+            >
+              {/* glow externo suave */}
+              <div
+                className="absolute inset-0 rounded-full blur-3xl opacity-70"
+                style={{
+                  background:
+                    "radial-gradient(circle at 50% 50%, rgba(245,166,35,0.45) 0%, rgba(0,163,215,0.25) 45%, transparent 70%)",
+                }}
+              />
+              {/* círculo sólido translúcido */}
+              <div
+                className="absolute inset-[8%] rounded-full backdrop-blur-sm border border-white/15"
+                style={{
+                  background:
+                    "radial-gradient(circle at 30% 30%, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.05) 55%, rgba(0,61,122,0.10) 100%)",
+                }}
+              />
+              {/* anel decorativo */}
+              <div className="absolute inset-[4%] rounded-full border border-white/20" />
+              <div className="absolute inset-[14%] rounded-full border border-white/10" />
+            </div>
+
+            <img
+              src={engenheiroAsset.url}
+              alt="Engenheiro analisando planta de imóvel"
+              className="relative w-full max-w-[320px] sm:max-w-[420px] lg:max-w-none lg:w-full h-auto object-contain drop-shadow-2xl"
+            />
+          </div>
         </div>
       </div>
 
