@@ -20,13 +20,6 @@ export function Hero() {
             "linear-gradient(to bottom, rgba(0,61,122,0.80), rgba(0,61,122,0.90))",
         }}
       />
-      <div
-        className="absolute inset-0 pointer-events-none"
-        style={{
-          background:
-            "linear-gradient(to right, rgba(0,163,215,0.45) 0%, rgba(0,115,198,0.25) 40%, transparent 75%)",
-        }}
-      />
 
       <div className="relative z-10 max-w-4xl mx-auto px-6 py-20 text-center">
         <div className="gsap-reveal inline-flex items-center rounded-full bg-[#F5A623] px-4 py-1.5 text-xs sm:text-sm font-medium text-[#1A1A2E] mb-8">
