@@ -1,6 +1,6 @@
 import { Icon } from "@iconify/react";
 import heroBg from "@/assets/hero-construcao.jpg";
-import { InfiniteGrid } from "@/components/ui/the-infinite-grid";
+import HeroWave from "@/components/ui/dynamic-wave-canvas-background";
 
 export function Hero() {
   return (
@@ -8,24 +8,19 @@ export function Hero() {
       id="top"
       className="relative min-h-screen flex items-center justify-center bg-[#00A3D7] overflow-hidden pt-16"
     >
+      <HeroWave className="absolute inset-0 w-full h-full pointer-events-none" />
       <img
         src={heroBg}
         alt=""
         aria-hidden="true"
-        className="absolute inset-0 w-full h-full object-cover object-center opacity-40 pointer-events-none"
+        className="absolute inset-0 w-full h-full object-cover object-center opacity-25 pointer-events-none mix-blend-overlay"
       />
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "linear-gradient(to bottom, rgba(0,163,215,0.80), rgba(0,163,215,0.90))",
+            "linear-gradient(to bottom, rgba(0,163,215,0.45), rgba(0,61,122,0.65))",
         }}
-      />
-      <InfiniteGrid
-        baseColor="rgba(255,255,255,0.10)"
-        activeColor="rgba(245,166,35,0.55)"
-        cellSize={40}
-        revealRadius={300}
       />
 
       <div className="relative z-10 max-w-4xl mx-auto px-6 py-20 text-center">
