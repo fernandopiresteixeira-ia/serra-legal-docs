@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import logoAsset from "@/assets/russell-bedford-logo.png.asset.json";
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -17,11 +18,13 @@ export function Header() {
           : "bg-[#00A3D7] border-b border-transparent"
       }`}
     >
-      <div className="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
-        <a href="#top" className="flex items-center h-full py-2">
-          <span className="font-display font-bold tracking-wide text-2xl sm:text-3xl text-white whitespace-nowrap -ml-2 sm:-ml-3">
-            Russell Bedford <span className="font-medium opacity-90">Brasil</span>
-          </span>
+      <div className="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 h-24 flex items-center justify-between">
+        <a href="#top" className="flex items-center h-full py-2 -ml-2 sm:-ml-4">
+          <img
+            src={logoAsset.url}
+            alt="Russell Bedford Brasil"
+            className="h-full w-auto object-contain"
+          />
         </a>
         <nav className="hidden md:flex items-center gap-6 lg:gap-8 text-sm text-white/90">
           <a href="#servicos" className="hover:text-white transition-colors">Serviços</a>
