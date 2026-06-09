@@ -10,7 +10,7 @@ export function Footer() {
             <img
               src={logoAsset.url}
               alt="Russell Bedford Brasil"
-              className="h-8 w-auto object-contain"
+              className="h-[122px] w-auto object-contain"
             />
             <p className="mt-3 text-white/70 max-w-sm">
               Regularização de imóveis na Serra Gaúcha.
