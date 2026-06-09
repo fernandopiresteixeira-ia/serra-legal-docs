@@ -80,7 +80,7 @@ export function Hero() {
               {/* Composição circular estática (estilo "Five Conda") */}
               <div
                 aria-hidden="true"
-                className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[170%] aspect-square max-w-[820px] pointer-events-none"
+                className="absolute left-1/2 top-1/2 -translate-x-[45%] -translate-y-1/2 w-[170%] aspect-square max-w-[820px] pointer-events-none"
               >
                 {/* Ondas concêntricas externas */}
                 <div className="absolute inset-0 rounded-full border border-white/15" />
