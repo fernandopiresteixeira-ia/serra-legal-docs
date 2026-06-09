@@ -1,4 +1,5 @@
 import { Icon } from "@iconify/react";
+import casalAsset from "@/assets/casal-chaves.png.asset.json";
 
 const services = [
   {
