@@ -1,4 +1,5 @@
 import { Icon } from "@iconify/react";
+import logoAsset from "@/assets/russell-bedford-logo.png.asset.json";
 
 export function Footer() {
   return (
@@ -6,9 +7,11 @@ export function Footer() {
       <div className="max-w-7xl mx-auto px-5 lg:px-8">
         <div className="grid md:grid-cols-2 lg:grid-cols-12 gap-10">
           <div className="lg:col-span-5">
-            <p className="font-display font-semibold text-lg">
-              Russell Bedford <span className="text-[#B8D9F0]">Brasil</span>
-            </p>
+            <img
+              src={logoAsset.url}
+              alt="Russell Bedford Brasil"
+              className="h-8 w-auto object-contain"
+            />
             <p className="mt-3 text-white/70 max-w-sm">
               Regularização de imóveis na Serra Gaúcha.
             </p>
