@@ -1,6 +1,7 @@
 import { Icon } from "@iconify/react";
 import HeroWave from "@/components/ui/dynamic-wave-canvas-background";
 import engenheiroAsset from "@/assets/engenheiro-planta.png.asset.json";
+import heroBg from "@/assets/hero-construcao.jpg";
 
 export function Hero() {
   return (
@@ -8,12 +9,18 @@ export function Hero() {
       id="top"
       className="relative min-h-screen flex items-center bg-[#00A3D7] overflow-hidden pt-24"
     >
-      <HeroWave className="absolute inset-0 w-full h-full pointer-events-none" />
+      <img
+        src={heroBg}
+        alt=""
+        aria-hidden="true"
+        className="absolute inset-0 w-full h-full object-cover object-center opacity-30 pointer-events-none"
+      />
+      <HeroWave className="absolute inset-0 w-full h-full pointer-events-none mix-blend-overlay opacity-90" />
       <div
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "linear-gradient(to bottom, rgba(0,163,215,0.35), rgba(0,61,122,0.55))",
+            "linear-gradient(to bottom, rgba(0,163,215,0.45), rgba(0,61,122,0.65))",
         }}
       />
 
