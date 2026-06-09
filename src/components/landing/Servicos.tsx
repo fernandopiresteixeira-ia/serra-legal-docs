@@ -62,18 +62,21 @@ export function Servicos() {
   return (
     <section
       id="servicos"
-      className="relative pt-24 lg:pt-32 pb-32 lg:pb-40 bg-white"
+      className="relative pt-24 lg:pt-32 pb-32 lg:pb-40"
     >
-      {/* Bottom half blue layer with ghosted couple photo */}
-      <div className="absolute inset-x-0 bottom-0 h-1/2 overflow-hidden">
+      {/* Top half: white com a foto do casal sutil ao fundo */}
+      <div className="absolute inset-x-0 top-0 h-1/2 overflow-hidden bg-white">
         <img
           src={casalAsset.url}
           alt=""
           aria-hidden="true"
-          className="absolute inset-0 w-full h-full object-cover object-top"
+          className="absolute inset-0 w-full h-full object-cover object-center"
         />
-        <div className="absolute inset-0" style={{ background: "rgba(0, 115, 198, 0.82)" }} />
+        <div className="absolute inset-0" style={{ background: "rgba(255, 255, 255, 0.88)" }} />
       </div>
+      {/* Bottom half: azul sólido */}
+      <div className="absolute inset-x-0 bottom-0 h-1/2 bg-[#0073C6]" />
+
 
       <div className="relative max-w-7xl mx-auto px-5 lg:px-8">
         <div className="gsap-fade-up mb-14">
