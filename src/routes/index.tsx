@@ -1,29 +1,110 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { useEffect } from "react";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Lenis from "lenis";
+
+import { Header } from "@/components/landing/Header";
+import { Hero } from "@/components/landing/Hero";
+import { Diferenciais } from "@/components/landing/Diferenciais";
+import { DorSolucao } from "@/components/landing/DorSolucao";
+import { Servicos } from "@/components/landing/Servicos";
+import { Selos } from "@/components/landing/Selos";
+import { ComoFunciona } from "@/components/landing/ComoFunciona";
+import { Depoimentos } from "@/components/landing/Depoimentos";
+import { Faq } from "@/components/landing/Faq";
+import { CtaFinal } from "@/components/landing/CtaFinal";
+import { Footer } from "@/components/landing/Footer";
+import { WhatsAppFloat } from "@/components/landing/WhatsAppFloat";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Your App" },
-      { name: "description", content: "Replace this with a one-sentence description of your app." },
-      { property: "og:title", content: "Your App" },
-      { property: "og:description", content: "Replace this with a one-sentence description of your app." },
+      { title: "Russell Bedford Brasil · Regularização de Imóveis na Serra Gaúcha" },
+      {
+        name: "description",
+        content:
+          "Habite-se, INSS de Obras, Averbação e Aprovação de Projetos na Serra Gaúcha - RS. Análise gratuita, sem você precisar ir a nenhuma repartição.",
+      },
+      { property: "og:title", content: "Russell Bedford Brasil · Regularização de Imóveis" },
+      {
+        property: "og:description",
+        content:
+          "Regularização completa do seu imóvel na Serra Gaúcha. Sem burocracia para você.",
+      },
+      { property: "og:type", content: "website" },
     ],
   }),
-  component: Index,
+  component: LandingPage,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
-function Index() {
+function LandingPage() {
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+    gsap.registerPlugin(ScrollTrigger);
+
+    const lenis = new Lenis({ duration: 1.2, easing: (t) => 1 - Math.pow(1 - t, 4) });
+    function raf(time: number) {
+      lenis.raf(time);
+      requestAnimationFrame(raf);
+    }
+    requestAnimationFrame(raf);
+    lenis.on("scroll", ScrollTrigger.update);
+
+    const ctx = gsap.context(() => {
+      // Hero stagger
+      gsap.fromTo(
+        ".gsap-reveal",
+        { y: 100, opacity: 0, visibility: "hidden" },
+        {
+          y: 0,
+          opacity: 1,
+          visibility: "visible",
+          duration: 1,
+          stagger: 0.12,
+          ease: "power3.out",
+          delay: 0.2,
+        }
+      );
+
+      // Scroll fades
+      gsap.utils.toArray<HTMLElement>(".gsap-fade-up").forEach((el) => {
+        gsap.fromTo(
+          el,
+          { y: 40, opacity: 0 },
+          {
+            y: 0,
+            opacity: 1,
+            duration: 0.9,
+            ease: "power3.out",
+            scrollTrigger: { trigger: el, start: "top 85%", toggleActions: "play none none none" },
+          }
+        );
+      });
+    });
+
+    return () => {
+      ctx.revert();
+      lenis.destroy();
+    };
+  }, []);
+
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
-    </div>
+    <>
+      <Header />
+      <main>
+        <Hero />
+        <Diferenciais />
+        <DorSolucao />
+        <Servicos />
+        <Selos />
+        <ComoFunciona />
+        <Depoimentos />
+        <Faq />
+        <CtaFinal />
+      </main>
+      <Footer />
+      <WhatsAppFloat />
+    </>
   );
 }
