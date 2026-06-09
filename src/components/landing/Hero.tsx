@@ -1,6 +1,7 @@
 import { Icon } from "@iconify/react";
 import HeroWave from "@/components/ui/dynamic-wave-canvas-background";
 import engenheiroAsset from "@/assets/engenheiro-planta.png.asset.json";
+import stripedCircleAsset from "@/assets/striped-circle.png.asset.json";
 import heroBg from "@/assets/hero-construcao.jpg";
 
 export function Hero() {
