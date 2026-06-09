@@ -1,4 +1,5 @@
 import { Icon } from "@iconify/react";
+import heroBg from "@/assets/hero-construcao.jpg";
 
 export function Hero() {
   return (
@@ -6,8 +7,19 @@ export function Hero() {
       id="top"
       className="relative min-h-screen flex items-center justify-center bg-[#003D7A] overflow-hidden pt-16"
     >
-      <div className="absolute inset-0 dot-grid opacity-[0.08] pointer-events-none" />
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#003D7A]" />
+      <img
+        src={heroBg}
+        alt=""
+        aria-hidden="true"
+        className="absolute inset-0 w-full h-full object-cover object-center opacity-40 pointer-events-none"
+      />
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background:
+            "linear-gradient(to bottom, rgba(0,61,122,0.80), rgba(0,61,122,0.90))",
+        }}
+      />
 
       <div className="relative z-10 max-w-4xl mx-auto px-6 py-20 text-center">
         <div className="gsap-reveal inline-flex items-center rounded-full bg-[#F5A623] px-4 py-1.5 text-xs sm:text-sm font-medium text-[#1A1A2E] mb-8">
