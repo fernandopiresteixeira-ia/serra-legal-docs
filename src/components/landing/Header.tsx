@@ -11,26 +11,29 @@ export function Header() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-40 bg-white/90 backdrop-blur-md border-b border-[#E0EAF4] transition-shadow ${
-        scrolled ? "shadow-[0_4px_24px_rgba(0,61,122,0.08)]" : ""
+      className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
+        scrolled
+          ? "bg-[#00A3D7]/70 backdrop-blur-md border-b border-white/20 shadow-[0_4px_24px_rgba(0,61,122,0.15)]"
+          : "bg-[#00A3D7] border-b border-transparent"
       }`}
     >
-      <div className="max-w-7xl mx-auto px-5 lg:px-8 h-16 flex items-center justify-between">
-        <a href="#top" className="font-display font-semibold tracking-wide text-[15px]">
-          <span className="text-[#1A1A2E]">Russell Bedford</span>{" "}
-          <span className="text-[#0073C6]">Brasil</span>
+      <div className="max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+        <a href="#top" className="flex items-center h-full py-2 -ml-1">
+          <span className="font-display font-bold tracking-wide text-xl sm:text-2xl text-white whitespace-nowrap">
+            Russell Bedford <span className="font-medium opacity-90">Brasil</span>
+          </span>
         </a>
-        <nav className="hidden md:flex items-center gap-8 text-sm text-[#4A4A5A]">
-          <a href="#servicos" className="hover:text-[#0073C6] transition-colors">Serviços</a>
-          <a href="#como-funciona" className="hover:text-[#0073C6] transition-colors">Como Funciona</a>
-          <a href="#depoimentos" className="hover:text-[#0073C6] transition-colors">Depoimentos</a>
-          <a href="#faq" className="hover:text-[#0073C6] transition-colors">FAQ</a>
+        <nav className="hidden md:flex items-center gap-6 lg:gap-8 text-sm text-white/90">
+          <a href="#servicos" className="hover:text-white transition-colors">Serviços</a>
+          <a href="#como-funciona" className="hover:text-white transition-colors">Como Funciona</a>
+          <a href="#depoimentos" className="hover:text-white transition-colors">Depoimentos</a>
+          <a href="#faq" className="hover:text-white transition-colors">FAQ</a>
         </nav>
-        <div className="flex items-center gap-4">
-          <span className="hidden lg:inline text-sm text-[#4A4A5A]">(xx) xxxxx-xxxx</span>
+        <div className="flex items-center gap-3 sm:gap-4">
+          <span className="hidden lg:inline text-sm text-white/90">(xx) xxxxx-xxxx</span>
           <a
             href="https://wa.me/55XXXXXXXXXXX"
-            className="inline-flex items-center rounded-lg bg-[#0073C6] px-4 py-2 text-sm font-medium text-white hover:bg-[#005FA3] transition-colors"
+            className="inline-flex items-center rounded-lg bg-white px-3 sm:px-4 py-2 text-sm font-semibold text-[#00A3D7] hover:bg-white/90 transition-colors"
           >
             Falar com especialista
           </a>
