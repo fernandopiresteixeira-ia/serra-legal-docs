@@ -125,7 +125,7 @@ export function Hero() {
               <img
                 src={engenheiroAsset.url}
                 alt="Engenheiro analisando planta de imóvel"
-                className="relative block w-[330px] sm:w-[418px] lg:w-[506px] h-auto -translate-x-[5%] translate-y-[5%] object-contain drop-shadow-2xl"
+                className="relative block w-[330px] sm:w-[418px] lg:w-[506px] h-auto -translate-x-[5%] translate-y-0 object-contain drop-shadow-2xl"
               />
             </div>
           </div>
