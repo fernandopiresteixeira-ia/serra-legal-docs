@@ -62,12 +62,19 @@ export function Servicos() {
   return (
     <section
       id="servicos"
-      className="relative pt-24 lg:pt-32 pb-32 lg:pb-40"
-      style={{
-        background:
-          "linear-gradient(to bottom, #FFFFFF 0%, #FFFFFF 50%, #0073C6 50%, #0073C6 100%)",
-      }}
+      className="relative pt-24 lg:pt-32 pb-32 lg:pb-40 bg-white"
     >
+      {/* Bottom half blue layer with ghosted couple photo */}
+      <div className="absolute inset-x-0 bottom-0 h-1/2 overflow-hidden">
+        <img
+          src={casalAsset.url}
+          alt=""
+          aria-hidden="true"
+          className="absolute inset-0 w-full h-full object-cover object-top"
+        />
+        <div className="absolute inset-0" style={{ background: "rgba(0, 115, 198, 0.82)" }} />
+      </div>
+
       <div className="relative max-w-7xl mx-auto px-5 lg:px-8">
         <div className="gsap-fade-up mb-14">
           <span className="text-xs font-semibold uppercase tracking-[0.18em] text-[#0073C6]">
