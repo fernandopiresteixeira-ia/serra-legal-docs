@@ -5,7 +5,7 @@ export function Hero() {
   return (
     <section
       id="top"
-      className="relative min-h-screen flex items-center justify-center bg-[#003D7A] overflow-hidden pt-16"
+      className="relative min-h-screen flex items-center justify-center bg-[#00A3D7] overflow-hidden pt-16"
     >
       <img
         src={heroBg}
@@ -17,7 +17,7 @@ export function Hero() {
         className="absolute inset-0 pointer-events-none"
         style={{
           background:
-            "linear-gradient(to bottom, rgba(0,61,122,0.80), rgba(0,61,122,0.90))",
+            "linear-gradient(to bottom, rgba(0,163,215,0.80), rgba(0,163,215,0.90))",
         }}
       />
 
