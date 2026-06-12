@@ -33,9 +33,11 @@ export function Header() {
           <a href="#faq" className="hover:text-white transition-colors">FAQ</a>
         </nav>
         <div className="flex items-center gap-3 sm:gap-4">
-          <span className="hidden lg:inline text-sm text-white/90">(xx) xxxxx-xxxx</span>
+          <a href="https://wa.me/5554999795685" className="hidden lg:inline text-sm text-white/90 hover:text-white transition-colors">
+            (54) 99979-5685
+          </a>
           <a
-            href="https://wa.me/55XXXXXXXXXXX"
+            href="https://wa.me/5554999795685"
             className="inline-flex items-center rounded-lg bg-white px-3 sm:px-4 py-2 text-sm font-semibold text-[#00A3D7] hover:bg-white/90 transition-colors"
           >
             Falar com especialista
