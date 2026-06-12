@@ -1,10 +1,12 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
+import { useServerFn } from "@tanstack/react-start";
 import { supabase } from "@/integrations/supabase/client";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
+import { ensureAdmin } from "@/lib/seedAdmin.functions";
 
 export const Route = createFileRoute("/admin/login")({
   ssr: false,
@@ -13,9 +15,11 @@ export const Route = createFileRoute("/admin/login")({
 
 function AdminLogin() {
   const navigate = useNavigate();
+  const seed = useServerFn(ensureAdmin);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const [seeding, setSeeding] = useState(false);
 
   async function handleLogin(e: React.FormEvent) {
     e.preventDefault();
@@ -28,6 +32,23 @@ function AdminLogin() {
     }
     toast.success("Bem-vindo!");
     navigate({ to: "/admin" });
+  }
+
+  async function handleSeed() {
+    if (!email || !password) {
+      toast.error("Preencha e-mail e senha primeiro.");
+      return;
+    }
+    setSeeding(true);
+    try {
+      await seed({ data: { email, password } });
+      toast.success("Admin pronto. Tente entrar agora.");
+    } catch (err) {
+      console.error(err);
+      toast.error("Falha ao inicializar admin.");
+    } finally {
+      setSeeding(false);
+    }
   }
 
   return (
