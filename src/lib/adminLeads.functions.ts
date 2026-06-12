@@ -46,7 +46,7 @@ export const updateLead = createServerFn({ method: "POST" })
       .parse(data),
   )
   .handler(async ({ data, context }) => {
-    const update: Record<string, unknown> = {};
+    const update: { status?: "novo" | "em_contato" | "convertido" | "descartado"; anotacoes?: string } = {};
     if (data.status) update.status = data.status;
     if (data.anotacoes !== undefined) update.anotacoes = data.anotacoes;
     const { error } = await context.supabase.from("leads").update(update).eq("id", data.id);
