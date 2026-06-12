@@ -89,6 +89,16 @@ function AdminLogin() {
           >
             {loading ? "Entrando..." : "Entrar"}
           </Button>
+          <Button
+            type="button"
+            variant="outline"
+            disabled={seeding}
+            onClick={handleSeed}
+            className="w-full"
+            size="sm"
+          >
+            {seeding ? "Inicializando..." : "Inicializar admin (primeiro acesso)"}
+          </Button>
         </form>
       </div>
     </div>
