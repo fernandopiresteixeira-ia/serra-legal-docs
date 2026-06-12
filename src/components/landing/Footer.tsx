@@ -50,16 +50,29 @@ export function Footer() {
               <li><a href="#como-funciona" className="hover:text-white">Como Funciona</a></li>
               <li><a href="#depoimentos" className="hover:text-white">Depoimentos</a></li>
               <li><a href="#faq" className="hover:text-white">FAQ</a></li>
-              <li><a href="https://wa.me/55XXXXXXXXXXX" className="hover:text-white">Contato</a></li>
+              <li><a href="https://wa.me/5554999795685" className="hover:text-white">Contato</a></li>
             </ul>
           </div>
 
           <div className="lg:col-span-2">
             <h4 className="font-display font-semibold text-white mb-4">Contato</h4>
             <ul className="space-y-2.5 text-sm text-white/70">
-              <li>WhatsApp: (xx) xxxxx-xxxx</li>
-              <li className="break-all">contato@russellbedfordbrasil.com.br</li>
-              <li>Caxias do Sul - RS</li>
+              <li>
+                <a href="https://wa.me/5554999795685" className="hover:text-white">
+                  WhatsApp: (54) 99979-5685
+                </a>
+              </li>
+              <li className="break-all">
+                <a href="mailto:juliana.pletsch@russellbedford.com.br" className="hover:text-white">
+                  juliana.pletsch@russellbedford.com.br
+                </a>
+              </li>
+              <li>
+                Business Center Auxin<br />
+                Av. Independência 2432, Sala 24 / 4º andar<br />
+                Quinta São Luiz · Bairro Exposição<br />
+                Caxias do Sul - RS
+              </li>
             </ul>
           </div>
         </div>
