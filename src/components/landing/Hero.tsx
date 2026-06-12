@@ -1,10 +1,14 @@
 import { Icon } from "@iconify/react";
+import { useState } from "react";
 import HeroWave from "@/components/ui/dynamic-wave-canvas-background";
 import engenheiroAsset from "@/assets/engenheiro-planta.png.asset.json";
 import stripedCircleAsset from "@/assets/striped-circle.png.asset.json";
 import heroBg from "@/assets/hero-construcao.jpg";
+import { openWhatsApp } from "@/lib/whatsapp";
+import { LeadFormModal } from "./LeadFormModal";
 
 export function Hero() {
+  const [open, setOpen] = useState(false);
   return (
     <section
       id="top"
@@ -43,19 +47,26 @@ export function Hero() {
           </p>
 
           <div className="gsap-reveal mt-10 flex flex-col sm:flex-row items-start sm:items-center gap-3">
-            <a
-              href="https://wa.me/55XXXXXXXXXXX"
+            <button
+              type="button"
+              onClick={() => setOpen(true)}
               className="group inline-flex items-center gap-2 rounded-lg bg-[#F5A623] px-6 py-3.5 text-sm font-semibold text-[#1A1A2E] hover:bg-[#E69612] transition-all shadow-lg shadow-[#F5A623]/20"
             >
               Solicitar análise gratuita
               <Icon icon="solar:arrow-right-linear" className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </a>
-            <a
-              href="#como-funciona"
+            </button>
+            <button
+              type="button"
+              onClick={() =>
+                openWhatsApp(
+                  "Olá! Vim pelo site da Russell Bedford e quero falar sobre regularização de imóvel.",
+                )
+              }
               className="inline-flex items-center gap-2 rounded-lg border border-white/40 px-6 py-3.5 text-sm font-medium text-white hover:bg-white/10 transition-colors"
             >
-              Ver como funciona ↓
-            </a>
+              <Icon icon="ic:baseline-whatsapp" className="w-5 h-5" />
+              Falar pelo WhatsApp
+            </button>
           </div>
 
           <div className="gsap-reveal mt-12 flex flex-wrap items-center gap-x-8 gap-y-3 text-xs sm:text-sm text-white/80">
@@ -129,6 +140,7 @@ export function Hero() {
       <div className="absolute bottom-6 left-1/2 -translate-x-1/2 w-px h-16 bg-white/20 overflow-hidden">
         <div className="w-full h-1/3 bg-[#F5A623] scroll-indicator-block" />
       </div>
+      <LeadFormModal open={open} onOpenChange={setOpen} ctaOrigem="hero" />
     </section>
   );
 }
