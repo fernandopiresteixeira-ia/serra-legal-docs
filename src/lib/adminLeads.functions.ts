@@ -22,7 +22,7 @@ export const listLeads = createServerFn({ method: "POST" })
     } as never);
     // RLS já garante; checagem extra para retorno limpo
     let q = supabase.from("leads").select("*").order("created_at", { ascending: false }).limit(500);
-    if (data.status) q = q.eq("status", data.status);
+    if (data.status) q = q.eq("status", data.status as "novo" | "em_contato" | "convertido" | "descartado");
     if (data.utm_source) q = q.eq("utm_source", data.utm_source);
     if (data.tipo_servico) q = q.eq("tipo_servico", data.tipo_servico);
     if (data.search) {
