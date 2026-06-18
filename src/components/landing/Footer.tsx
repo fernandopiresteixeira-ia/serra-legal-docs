@@ -88,7 +88,7 @@ export function Footer() {
           <p>© 2025 Russell Bedford Brasil. Todos os direitos reservados.</p>
           <p className="text-white/50">CREA-RS [número] · Responsável Técnico: [Nome]</p>
           <p className="flex gap-4">
-            <a href="#" className="hover:text-white">Política de Privacidade</a>
+            <a href="/politica-de-privacidade" className="hover:text-white">Política de Privacidade</a>
             <a href="#" className="hover:text-white">Termos de Uso</a>
           </p>
         </div>
