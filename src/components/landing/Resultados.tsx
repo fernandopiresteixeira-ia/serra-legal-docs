@@ -91,7 +91,7 @@ export function Resultados() {
   return (
     <section
       id="resultados"
-      className="relative z-20 -mt-[80px] lg:-mt-[100px]"
+      className="relative z-20 -mt-[60px] lg:-mt-20 bg-transparent"
     >
       <div className="max-w-5xl mx-auto px-4 lg:px-8">
         <div
