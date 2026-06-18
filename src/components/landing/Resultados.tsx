@@ -105,10 +105,27 @@ export function Resultados() {
             boxShadow: '0 25px 50px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.1)',
           }}
         >
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-y-4 lg:gap-y-0 divide-y lg:divide-y-0 lg:divide-x divide-white/20">
-            {stats.map((s, i) => (
-              <StatItem key={i} stat={s} start={start} />
-            ))}
+          <div className="grid grid-cols-2 lg:grid-cols-4">
+            {stats.map((s, i) => {
+              const borderClasses = (() => {
+                switch (i) {
+                  case 0:
+                    return "border-r border-b lg:border-b-0 lg:border-r border-white/20";
+                  case 1:
+                    return "border-b lg:border-b-0 lg:border-r border-white/20";
+                  case 2:
+                    return "border-r lg:border-r border-white/20";
+                  case 3:
+                  default:
+                    return "";
+                }
+              })();
+              return (
+                <div key={i} className={borderClasses}>
+                  <StatItem stat={s} start={start} />
+                </div>
+              );
+            })}
           </div>
         </div>
       </div>
