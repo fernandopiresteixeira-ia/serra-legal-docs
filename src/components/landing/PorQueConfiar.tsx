@@ -25,7 +25,7 @@ const items = [
 
 export function PorQueConfiar() {
   return (
-    <section className="bg-slate-50 border-t border-b border-[#E0EAF4] pt-[280px] lg:pt-[100px] pb-20 lg:pb-24">
+    <section className="bg-slate-50 border-t border-b border-[#E0EAF4] pt-[90px] lg:pt-[100px] pb-20 lg:pb-24">
       <div className="max-w-7xl mx-auto px-5 lg:px-8">
         <div className="gsap-fade-up text-center max-w-3xl mx-auto mb-16">
           <span className="text-xs font-semibold uppercase tracking-[0.18em] text-[#0073C6]">
