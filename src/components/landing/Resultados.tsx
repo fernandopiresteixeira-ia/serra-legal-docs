@@ -99,7 +99,7 @@ export function Resultados() {
         boxShadow: '0 25px 50px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.1)',
       }}
     >
-      <div className="grid grid-cols-2 lg:grid-cols-4 lg:divide-x lg:divide-white/20 gap-y-6 lg:gap-y-0">
+      <div className="grid grid-cols-2 lg:grid-cols-[1fr_1.5fr_1fr_1fr] lg:divide-x lg:divide-white/20 gap-y-6 lg:gap-y-0">
         {stats.map((s, i) => (
           <div key={i}>
             <StatItem stat={s} start={start} />
