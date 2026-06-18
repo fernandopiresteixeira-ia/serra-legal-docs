@@ -47,11 +47,11 @@ function useCountUp(target: number, start: boolean, duration = 2000) {
 function StatItem({ stat, start }: { stat: Stat; start: boolean }) {
   const value = useCountUp(stat.target, start);
   return (
-    <div className="flex flex-col items-center text-center px-4 py-1">
-      <div className="font-display font-bold text-[#F5A623] text-4xl lg:text-5xl leading-none tracking-tight whitespace-nowrap">
+    <div className="flex flex-col items-center text-center px-2 py-1">
+      <div className="font-display font-bold text-[#F5A623] text-2xl lg:text-5xl leading-none tracking-tight whitespace-nowrap">
         {stat.prefix}{value}{stat.suffix}
       </div>
-      <p className="mt-3 text-[#1A1A2E] text-[10px] lg:text-xs font-bold uppercase tracking-widest leading-relaxed">
+      <p className="mt-3 text-[#1A1A2E] text-[9px] lg:text-xs font-bold uppercase tracking-widest leading-relaxed">
         {stat.label}
       </p>
     </div>
@@ -90,7 +90,7 @@ export function Resultados() {
     <div
       id="resultados"
       ref={ref}
-      className="rounded-[20px] px-6 py-5 lg:px-12 lg:py-8"
+      className="rounded-[20px] px-6 py-4 lg:px-12 lg:py-8"
       style={{
         background: 'linear-gradient(90deg, rgba(0, 163, 215, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%)',
         backgroundColor: 'rgba(255, 255, 255, 0.10)',
