@@ -89,31 +89,26 @@ export function Resultados() {
   }, []);
 
   return (
-    <section
+    <div
       id="resultados"
-      className="relative z-20 -mt-[60px] lg:-mt-20 bg-transparent"
+      ref={ref}
+      className="rounded-[20px] px-6 py-8 lg:px-12 lg:py-12"
+      style={{
+        background: 'linear-gradient(90deg, rgba(0, 163, 215, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%)',
+        backgroundColor: 'rgba(255, 255, 255, 0.10)',
+        backdropFilter: 'blur(20px)',
+        border: '1px solid rgba(255, 255, 255, 0.25)',
+        boxShadow: '0 25px 50px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.1)',
+      }}
     >
-      <div className="max-w-5xl mx-auto px-4 lg:px-8">
-        <div
-          ref={ref}
-          className="rounded-[20px] px-6 py-8 lg:px-12 lg:py-12"
-          style={{
-            background: 'linear-gradient(90deg, rgba(0, 163, 215, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%)',
-            backgroundColor: 'rgba(255, 255, 255, 0.10)',
-            backdropFilter: 'blur(20px)',
-            border: '1px solid rgba(255, 255, 255, 0.25)',
-            boxShadow: '0 25px 50px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.1)',
-          }}
-        >
-          <div className="grid grid-cols-2 lg:grid-cols-4 lg:divide-x lg:divide-white/20 gap-y-6 lg:gap-y-0">
-            {stats.map((s, i) => (
-              <div key={i}>
-                <StatItem stat={s} start={start} />
-              </div>
-            ))}
+      <div className="grid grid-cols-2 lg:grid-cols-4 lg:divide-x lg:divide-white/20 gap-y-6 lg:gap-y-0">
+        {stats.map((s, i) => (
+          <div key={i}>
+            <StatItem stat={s} start={start} />
           </div>
-        </div>
+        ))}
       </div>
-    </section>
+    </div>
   );
 }
+

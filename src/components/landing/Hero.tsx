@@ -5,6 +5,8 @@ import engenheiroAsset from "@/assets/engenheiro-planta.png.asset.json";
 import stripedCircleAsset from "@/assets/striped-circle.png.asset.json";
 import heroBg from "@/assets/hero-construcao.jpg";
 import { LeadFormModal } from "./LeadFormModal";
+import { Resultados } from "./Resultados";
+
 
 export function Hero() {
   const [open, setOpen] = useState(false);
@@ -127,7 +129,15 @@ export function Hero() {
       <div className="absolute bottom-6 left-1/2 -translate-x-1/2 w-px h-16 bg-white/20 overflow-hidden">
         <div className="w-full h-1/3 bg-[#F5A623] scroll-indicator-block" />
       </div>
+
+      <div className="absolute bottom-0 left-0 right-0 translate-y-1/2 z-20 px-4 lg:px-8">
+        <div className="max-w-5xl mx-auto">
+          <Resultados />
+        </div>
+      </div>
+
       <LeadFormModal open={open} onOpenChange={setOpen} ctaOrigem="hero" />
     </section>
   );
 }
+

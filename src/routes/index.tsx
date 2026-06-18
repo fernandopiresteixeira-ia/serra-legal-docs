@@ -12,7 +12,7 @@ import { DorSolucao } from "@/components/landing/DorSolucao";
 import { Servicos } from "@/components/landing/Servicos";
 import { Selos } from "@/components/landing/Selos";
 import { ComoFunciona } from "@/components/landing/ComoFunciona";
-import { Resultados } from "@/components/landing/Resultados";
+
 import { Faq } from "@/components/landing/Faq";
 import { CtaFinal } from "@/components/landing/CtaFinal";
 import { Footer } from "@/components/landing/Footer";
@@ -94,7 +94,7 @@ function LandingPage() {
       <Header />
       <main>
         <Hero />
-        <Resultados />
+
         <PorQueConfiar />
         <Diferenciais />
         <DorSolucao />
