@@ -4,7 +4,6 @@ import HeroWave from "@/components/ui/dynamic-wave-canvas-background";
 import engenheiroAsset from "@/assets/engenheiro-planta.png.asset.json";
 import stripedCircleAsset from "@/assets/striped-circle.png.asset.json";
 import heroBg from "@/assets/hero-construcao.jpg";
-import { openWhatsApp } from "@/lib/whatsapp";
 import { LeadFormModal } from "./LeadFormModal";
 
 export function Hero() {
@@ -42,8 +41,8 @@ export function Hero() {
           </h1>
 
           <p className="gsap-reveal mt-8 max-w-xl text-white/85 text-base sm:text-lg leading-relaxed">
-            A Russell Bedford Brasil resolve toda a documentação — Habite-se, INSS de Obras, Averbação
-            e Aprovação de Projetos — sem você precisar ir a nenhuma repartição.
+            A Russell Bedford Brasil é referência em regularização de imóveis — Habite-se, INSS de
+            Obras, Averbação e Aprovação de Projetos — sem você precisar ir a nenhuma repartição.
           </p>
 
           <div className="gsap-reveal mt-10 flex flex-col sm:flex-row items-start sm:items-center gap-3">
@@ -55,18 +54,6 @@ export function Hero() {
               Solicitar análise gratuita
               <Icon icon="solar:arrow-right-linear" className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </button>
-            <button
-              type="button"
-              onClick={() =>
-                openWhatsApp(
-                  "Olá! Vim pelo site da Russell Bedford e quero falar sobre regularização de imóvel.",
-                )
-              }
-              className="inline-flex items-center gap-2 rounded-lg border border-white/40 px-6 py-3.5 text-sm font-medium text-white hover:bg-white/10 transition-colors"
-            >
-              <Icon icon="ic:baseline-whatsapp" className="w-5 h-5" />
-              Falar pelo WhatsApp
-            </button>
           </div>
 
           <div className="gsap-reveal mt-12 flex flex-wrap items-center gap-x-8 gap-y-3 text-xs sm:text-sm text-white/80">
@@ -76,7 +63,7 @@ export function Hero() {
             </span>
             <span className="inline-flex items-center gap-2">
               <Icon icon="solar:check-circle-bold" className="w-4 h-4 text-white" />
-              Atendemos toda a Serra Gaúcha
+              Caxias do Sul, Bento Gonçalves, Farroupilha e região
             </span>
             <span className="inline-flex items-center gap-2">
               <Icon icon="solar:check-circle-bold" className="w-4 h-4 text-white" />
