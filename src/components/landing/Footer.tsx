@@ -13,7 +13,9 @@ export function Footer() {
               className="h-[122px] w-auto object-contain"
             />
             <p className="mt-3 text-white/70 max-w-sm">
-              Regularização de imóveis na Serra Gaúcha.
+              Referência em regularização de imóveis na Serra Gaúcha — Caxias do Sul, Bento
+              Gonçalves, Farroupilha, Flores da Cunha, Garibaldi, Carlos Barbosa, Nova Petrópolis
+              e São Marcos.
             </p>
             <div className="mt-6 flex items-center gap-4">
               {[
@@ -48,9 +50,9 @@ export function Footer() {
             <h4 className="font-display font-semibold text-white mb-4">Navegação</h4>
             <ul className="space-y-2.5 text-sm text-white/70">
               <li><a href="#como-funciona" className="hover:text-white">Como Funciona</a></li>
-              <li><a href="#depoimentos" className="hover:text-white">Depoimentos</a></li>
+              <li><a href="#resultados" className="hover:text-white">Resultados</a></li>
               <li><a href="#faq" className="hover:text-white">FAQ</a></li>
-              <li><a href="https://wa.me/5554999795685" className="hover:text-white">Contato</a></li>
+              <li><a href="#contato" className="hover:text-white">Contato</a></li>
             </ul>
           </div>
 
@@ -58,8 +60,8 @@ export function Footer() {
             <h4 className="font-display font-semibold text-white mb-4">Contato</h4>
             <ul className="space-y-2.5 text-sm text-white/70">
               <li>
-                <a href="https://wa.me/5554999795685" className="hover:text-white">
-                  WhatsApp: (54) 99979-5685
+                <a href="tel:+5554999795685" className="hover:text-white">
+                  (54) 99979-5685
                 </a>
               </li>
               <li className="break-all">

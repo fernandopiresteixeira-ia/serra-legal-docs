@@ -1,12 +1,11 @@
 import { Icon } from "@iconify/react";
 import { useState } from "react";
-import { openWhatsApp } from "@/lib/whatsapp";
 import { LeadFormModal } from "./LeadFormModal";
 
 export function CtaFinal() {
   const [open, setOpen] = useState(false);
   return (
-    <section className="relative bg-[#2A3F6F] py-28 lg:py-36 overflow-hidden">
+    <section id="contato" className="relative bg-[#2A3F6F] py-28 lg:py-36 overflow-hidden">
       <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full bg-[#0073C6]/20 blur-[100px] pointer-events-none" />
       <div className="relative max-w-4xl mx-auto px-5 lg:px-8 text-center">
         <h2 className="gsap-fade-up font-display font-bold text-white text-4xl sm:text-5xl lg:text-[64px] leading-[1.05] tracking-tight">
@@ -26,22 +25,11 @@ export function CtaFinal() {
             Solicitar análise gratuita
             <Icon icon="solar:arrow-right-linear" className="w-5 h-5" />
           </button>
-          <button
-            type="button"
-            onClick={() =>
-              openWhatsApp(
-                "Olá! Vim pelo site da Russell Bedford e quero falar sobre regularização de imóvel.",
-              )
-            }
-            className="inline-flex items-center gap-2 rounded-lg border border-white/40 px-6 py-3.5 text-sm font-medium text-white hover:bg-white/10 transition-colors"
-          >
-            <Icon icon="solar:chat-round-line-linear" className="w-5 h-5" />
-            Falar pelo WhatsApp
-          </button>
         </div>
 
         <p className="gsap-fade-up mt-8 text-sm text-white/60">
-          📍 Serra Gaúcha - RS · Resposta ágil pelo WhatsApp
+          📍 Caxias do Sul, Bento Gonçalves, Farroupilha, Flores da Cunha, Garibaldi, Carlos
+          Barbosa, Nova Petrópolis e São Marcos
         </p>
       </div>
       <LeadFormModal open={open} onOpenChange={setOpen} ctaOrigem="cta_final" />
