@@ -95,6 +95,7 @@ function LandingPage() {
       <Header />
       <main>
         <Hero />
+        <PorQueConfiar />
         <Diferenciais />
         <DorSolucao />
         <Servicos />
