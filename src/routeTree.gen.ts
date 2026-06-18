@@ -9,11 +9,17 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as PoliticaDePrivacidadeRouteImport } from './routes/politica-de-privacidade'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdminLoginRouteImport } from './routes/admin/login'
 import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/admin'
 
+const PoliticaDePrivacidadeRoute = PoliticaDePrivacidadeRouteImport.update({
+  id: '/politica-de-privacidade',
+  path: '/politica-de-privacidade',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
   id: '/_authenticated',
   getParentRoute: () => rootRouteImport,
@@ -36,11 +42,13 @@ const AuthenticatedAdminRoute = AuthenticatedAdminRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
   '/admin': typeof AuthenticatedAdminRoute
   '/admin/login': typeof AdminLoginRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
   '/admin': typeof AuthenticatedAdminRoute
   '/admin/login': typeof AdminLoginRoute
 }
@@ -48,18 +56,20 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
+  '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
   '/_authenticated/admin': typeof AuthenticatedAdminRoute
   '/admin/login': typeof AdminLoginRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/admin' | '/admin/login'
+  fullPaths: '/' | '/politica-de-privacidade' | '/admin' | '/admin/login'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/admin' | '/admin/login'
+  to: '/' | '/politica-de-privacidade' | '/admin' | '/admin/login'
   id:
     | '__root__'
     | '/'
     | '/_authenticated'
+    | '/politica-de-privacidade'
     | '/_authenticated/admin'
     | '/admin/login'
   fileRoutesById: FileRoutesById
@@ -67,11 +77,19 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
+  PoliticaDePrivacidadeRoute: typeof PoliticaDePrivacidadeRoute
   AdminLoginRoute: typeof AdminLoginRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/politica-de-privacidade': {
+      id: '/politica-de-privacidade'
+      path: '/politica-de-privacidade'
+      fullPath: '/politica-de-privacidade'
+      preLoaderRoute: typeof PoliticaDePrivacidadeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/_authenticated': {
       id: '/_authenticated'
       path: ''
@@ -117,6 +135,7 @@ const AuthenticatedRouteRouteWithChildren =
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
+  PoliticaDePrivacidadeRoute: PoliticaDePrivacidadeRoute,
   AdminLoginRoute: AdminLoginRoute,
 }
 export const routeTree = rootRouteImport
