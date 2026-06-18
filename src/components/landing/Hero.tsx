@@ -13,7 +13,7 @@ export function Hero() {
   return (
     <section
       id="top"
-      className="relative min-h-screen flex items-center bg-[#00A3D7] pt-24"
+      className="relative min-h-screen flex items-center bg-[#00A3D7] pt-24 overflow-hidden"
     >
       <img
         src={heroBg}
