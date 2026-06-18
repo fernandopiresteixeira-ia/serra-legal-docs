@@ -89,7 +89,7 @@ export function Footer() {
           <p className="text-white/50">CREA-RS [número] · Responsável Técnico: [Nome]</p>
           <p className="flex gap-4">
             <a href="/politica-de-privacidade" className="hover:text-white">Política de Privacidade</a>
-            <a href="#" className="hover:text-white">Termos de Uso</a>
+            <a href="/central-de-privacidade" className="hover:text-white">Central de Privacidade</a>
           </p>
         </div>
       </div>
