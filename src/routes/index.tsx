@@ -6,6 +6,7 @@ import Lenis from "lenis";
 
 import { Header } from "@/components/landing/Header";
 import { Hero } from "@/components/landing/Hero";
+import { PorQueConfiar } from "@/components/landing/PorQueConfiar";
 import { Diferenciais } from "@/components/landing/Diferenciais";
 import { DorSolucao } from "@/components/landing/DorSolucao";
 import { Servicos } from "@/components/landing/Servicos";
@@ -94,6 +95,7 @@ function LandingPage() {
       <Header />
       <main>
         <Hero />
+        <PorQueConfiar />
         <Diferenciais />
         <DorSolucao />
         <Servicos />
