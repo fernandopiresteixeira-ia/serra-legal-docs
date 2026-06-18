@@ -90,7 +90,7 @@ export function Resultados() {
     <div
       id="resultados"
       ref={ref}
-      className="rounded-[20px] px-6 py-8 lg:px-12 lg:py-12"
+      className="rounded-[20px] px-6 py-5 lg:px-12 lg:py-8"
       style={{
         background: 'linear-gradient(90deg, rgba(0, 163, 215, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%)',
         backgroundColor: 'rgba(255, 255, 255, 0.10)',
