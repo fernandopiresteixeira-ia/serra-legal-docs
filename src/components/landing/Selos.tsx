@@ -4,7 +4,7 @@ const selos = [
   { icon: "solar:verified-check-linear", title: "Análise gratuita", desc: "Sem custo e sem compromisso" },
   { icon: "solar:document-text-linear", title: "Sem burocracia", desc: "Não precisa ir a repartição alguma" },
   { icon: "solar:clock-circle-linear", title: "Acompanhamento", desc: "Atualização em cada etapa do processo" },
-  { icon: "solar:map-point-linear", title: "Serra Gaúcha", desc: "Toda a região serrana atendida" },
+  { icon: "solar:map-point-linear", title: "Serra Gaúcha", desc: "Caxias, Bento, Farroupilha, Flores da Cunha, Garibaldi e região" },
 ];
 
 export function Selos() {

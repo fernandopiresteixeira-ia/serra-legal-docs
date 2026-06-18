@@ -16,15 +16,15 @@ const faqs = [
   },
   {
     q: "Qual é o custo da regularização?",
-    a: "O valor depende do tipo, tamanho e situação atual do imóvel. Por isso oferecemos análise inicial gratuita e sem compromisso, com orçamento detalhado antes de qualquer decisão.",
+    a: "O valor depende do tipo, tamanho e situação atual do imóvel. Por isso a análise inicial é gratuita e sem compromisso, com orçamento detalhado antes de qualquer decisão.",
   },
   {
     q: "Imóvel construído há muitos anos pode ser regularizado?",
-    a: "Sim. É possível regularizar construções antigas, desde que atendam aos requisitos técnicos e legais aplicáveis. Avaliamos cada caso individualmente.",
+    a: "Sim. É possível regularizar construções antigas, desde que atendam aos requisitos técnicos e legais aplicáveis. Cada caso é avaliado individualmente.",
   },
   {
     q: "Quais municípios da Serra Gaúcha vocês atendem?",
-    a: "Atendemos Caxias do Sul, Bento Gonçalves, Flores da Cunha, Garibaldi, Carlos Barbosa, Nova Prata, Vacaria, São Marcos, Farroupilha e municípios vizinhos da região serrana.",
+    a: "Especialistas em Caxias do Sul, Bento Gonçalves, Farroupilha, Flores da Cunha, Garibaldi, Carlos Barbosa, Nova Petrópolis e São Marcos, além de municípios vizinhos da região serrana.",
   },
 ];
 

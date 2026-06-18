@@ -32,7 +32,7 @@ export function Header() {
           <nav className="hidden md:flex items-center gap-6 lg:gap-8 text-sm text-white/90">
             <a href="#servicos" className="hover:text-white transition-colors">Serviços</a>
             <a href="#como-funciona" className="hover:text-white transition-colors">Como Funciona</a>
-            <a href="#depoimentos" className="hover:text-white transition-colors">Depoimentos</a>
+            <a href="#resultados" className="hover:text-white transition-colors">Resultados</a>
             <a href="#faq" className="hover:text-white transition-colors">FAQ</a>
           </nav>
           <div className="flex items-center gap-3 sm:gap-4">
