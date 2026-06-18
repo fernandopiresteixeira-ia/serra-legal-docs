@@ -5,7 +5,7 @@ const items = [
   {
     icon: "solar:map-point-wave-linear",
     title: "Conhecimento local profundo",
-    desc: "Atuamos na Serra Gaúcha e conhecemos as exigências específicas das prefeituras da região.",
+    desc: "Reconhecidos pelo domínio das exigências específicas das prefeituras de Caxias do Sul, Bento Gonçalves, Farroupilha, Flores da Cunha, Garibaldi, Carlos Barbosa, Nova Petrópolis e São Marcos.",
   },
   {
     icon: "solar:document-text-linear",
@@ -40,7 +40,7 @@ export function Diferenciais() {
             Por que nos escolher
           </span>
           <h2 className="mt-3 font-display font-semibold text-3xl sm:text-4xl lg:text-[44px] leading-tight text-[#1A1A2E]">
-            Especialistas em regularização na Serra Gaúcha
+            Somos referência em regularização de imóveis na Serra Gaúcha
           </h2>
 
           <div className="mt-10 space-y-7">

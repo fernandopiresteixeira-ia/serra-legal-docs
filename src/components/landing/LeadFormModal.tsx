@@ -23,7 +23,6 @@ import { Icon } from "@iconify/react";
 import { toast } from "sonner";
 import { submitLead } from "@/lib/leads.functions";
 import { captureTracking } from "@/lib/leadTracking";
-import { openWhatsApp } from "@/lib/whatsapp";
 
 const SERVICOS = [
   "Habite-se",
@@ -112,13 +111,6 @@ export function LeadFormModal({ open, onOpenChange, ctaOrigem }: Props) {
     mutation.mutate();
   }
 
-  function handleWhatsApp() {
-    const msg = `Olá! Sou ${form.nome}. Acabei de preencher o formulário no site sobre: ${form.tipo_servico}.${
-      form.mensagem ? ` ${form.mensagem}` : ""
-    }`;
-    openWhatsApp(msg);
-    onOpenChange(false);
-  }
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
@@ -157,7 +149,7 @@ export function LeadFormModal({ open, onOpenChange, ctaOrigem }: Props) {
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
                 <div className="space-y-1.5">
-                  <Label htmlFor="telefone">WhatsApp *</Label>
+                  <Label htmlFor="telefone">Telefone *</Label>
                   <Input
                     id="telefone"
                     required
@@ -237,15 +229,7 @@ export function LeadFormModal({ open, onOpenChange, ctaOrigem }: Props) {
               </DialogDescription>
             </DialogHeader>
             <div className="flex flex-col gap-2 pt-2">
-              <Button
-                onClick={handleWhatsApp}
-                className="bg-[#25D366] hover:bg-[#1FBA57] text-white"
-                size="lg"
-              >
-                <Icon icon="ic:baseline-whatsapp" className="w-5 h-5" />
-                Continuar pelo WhatsApp
-              </Button>
-              <Button variant="ghost" onClick={() => onOpenChange(false)}>
+              <Button onClick={() => onOpenChange(false)} size="lg">
                 Fechar
               </Button>
             </div>
