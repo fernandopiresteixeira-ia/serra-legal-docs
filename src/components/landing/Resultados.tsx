@@ -47,13 +47,13 @@ function useCountUp(target: number, start: boolean, duration = 2000) {
 function StatItem({ stat, start }: { stat: Stat; start: boolean }) {
   const value = useCountUp(stat.target, start);
   return (
-    <div className="flex flex-col items-center text-center px-4 lg:px-6">
-      <div className="font-display font-bold text-[#F5A623] text-4xl sm:text-5xl lg:text-6xl leading-none tracking-tight tabular-nums">
+    <div className="flex flex-col items-center text-center px-4 lg:px-6 py-4 lg:py-0">
+      <div className="font-display font-bold text-[#F5A623] text-5xl lg:text-6xl leading-none tracking-tight tabular-nums">
         {stat.prefix}
         {value}
         {stat.suffix}
       </div>
-      <p className="mt-3 text-white text-[11px] sm:text-xs font-semibold uppercase tracking-[0.15em]">
+      <p className="mt-3 text-white/85 text-xs font-semibold uppercase tracking-widest leading-relaxed">
         {stat.label}
       </p>
     </div>
@@ -96,9 +96,16 @@ export function Resultados() {
       <div className="max-w-5xl mx-auto px-5 lg:px-8">
         <div
           ref={ref}
-          className="rounded-2xl bg-[#1A1A2E] shadow-xl px-6 py-10 lg:px-12 lg:py-12"
+          className="rounded-[20px] px-6 py-8 lg:px-12 lg:py-12"
+          style={{
+            background: 'linear-gradient(90deg, rgba(0, 163, 215, 0.15) 0%, rgba(255, 255, 255, 0.05) 100%)',
+            backgroundColor: 'rgba(255, 255, 255, 0.10)',
+            backdropFilter: 'blur(20px)',
+            border: '1px solid rgba(255, 255, 255, 0.25)',
+            boxShadow: '0 25px 50px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255, 255, 255, 0.1)',
+          }}
         >
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-y-8 lg:gap-y-0 lg:divide-x lg:divide-white/15">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-y-4 lg:gap-y-0 divide-y lg:divide-y-0 lg:divide-x divide-white/20">
             {stats.map((s, i) => (
               <StatItem key={i} stat={s} start={start} />
             ))}
