@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as PoliticaDePrivacidadeRouteImport } from './routes/politica-de-privacidade'
+import { Route as CentralDePrivacidadeRouteImport } from './routes/central-de-privacidade'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as AdminLoginRouteImport } from './routes/admin/login'
@@ -18,6 +19,11 @@ import { Route as AuthenticatedAdminRouteImport } from './routes/_authenticated/
 const PoliticaDePrivacidadeRoute = PoliticaDePrivacidadeRouteImport.update({
   id: '/politica-de-privacidade',
   path: '/politica-de-privacidade',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CentralDePrivacidadeRoute = CentralDePrivacidadeRouteImport.update({
+  id: '/central-de-privacidade',
+  path: '/central-de-privacidade',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthenticatedRouteRoute = AuthenticatedRouteRouteImport.update({
@@ -42,12 +48,14 @@ const AuthenticatedAdminRoute = AuthenticatedAdminRouteImport.update({
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/central-de-privacidade': typeof CentralDePrivacidadeRoute
   '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
   '/admin': typeof AuthenticatedAdminRoute
   '/admin/login': typeof AdminLoginRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/central-de-privacidade': typeof CentralDePrivacidadeRoute
   '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
   '/admin': typeof AuthenticatedAdminRoute
   '/admin/login': typeof AdminLoginRoute
@@ -56,19 +64,31 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
+  '/central-de-privacidade': typeof CentralDePrivacidadeRoute
   '/politica-de-privacidade': typeof PoliticaDePrivacidadeRoute
   '/_authenticated/admin': typeof AuthenticatedAdminRoute
   '/admin/login': typeof AdminLoginRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/politica-de-privacidade' | '/admin' | '/admin/login'
+  fullPaths:
+    | '/'
+    | '/central-de-privacidade'
+    | '/politica-de-privacidade'
+    | '/admin'
+    | '/admin/login'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/politica-de-privacidade' | '/admin' | '/admin/login'
+  to:
+    | '/'
+    | '/central-de-privacidade'
+    | '/politica-de-privacidade'
+    | '/admin'
+    | '/admin/login'
   id:
     | '__root__'
     | '/'
     | '/_authenticated'
+    | '/central-de-privacidade'
     | '/politica-de-privacidade'
     | '/_authenticated/admin'
     | '/admin/login'
@@ -77,6 +97,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
+  CentralDePrivacidadeRoute: typeof CentralDePrivacidadeRoute
   PoliticaDePrivacidadeRoute: typeof PoliticaDePrivacidadeRoute
   AdminLoginRoute: typeof AdminLoginRoute
 }
@@ -88,6 +109,13 @@ declare module '@tanstack/react-router' {
       path: '/politica-de-privacidade'
       fullPath: '/politica-de-privacidade'
       preLoaderRoute: typeof PoliticaDePrivacidadeRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/central-de-privacidade': {
+      id: '/central-de-privacidade'
+      path: '/central-de-privacidade'
+      fullPath: '/central-de-privacidade'
+      preLoaderRoute: typeof CentralDePrivacidadeRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/_authenticated': {
@@ -135,6 +163,7 @@ const AuthenticatedRouteRouteWithChildren =
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
+  CentralDePrivacidadeRoute: CentralDePrivacidadeRoute,
   PoliticaDePrivacidadeRoute: PoliticaDePrivacidadeRoute,
   AdminLoginRoute: AdminLoginRoute,
 }
