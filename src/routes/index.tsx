@@ -94,13 +94,13 @@ function LandingPage() {
       <Header />
       <main>
         <Hero />
+        <Resultados />
         <PorQueConfiar />
         <Diferenciais />
         <DorSolucao />
         <Servicos />
         <Selos />
         <ComoFunciona />
-        <Resultados />
         <Faq />
         <CtaFinal />
       </main>
