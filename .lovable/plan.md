@@ -1,31 +1,47 @@
-## O que está acontecendo
+## Mudanças
 
-**1. Desktop — "+R$ 200mi" passa por cima da divisória**
-No card de Resultados, cada número usa `text-5xl` e `whitespace-nowrap`. O texto "+R$ 200mi" é mais largo que a coluna disponível, então invade a linha divisória vertical ao lado. As outras três colunas têm números curtos (+300, +40, 95%) e por isso não mostram o problema.
+### 1. `src/routes/index.tsx`
+Mover `<Resultados />` para entre `<Hero />` e `<PorQueConfiar />` (remover da posição atual entre ComoFunciona e Faq).
 
-**2. Mobile — a página "anda" para os lados**
-O Hero tem uma composição circular decorativa com `w-[170%]` (170% da largura do container) atrás da imagem do engenheiro, e a própria imagem usa `-translate-x-[5%]`. Isso estoura a largura da tela no celular e cria rolagem horizontal. A `<section>` do Hero não tem `overflow-hidden` para conter esse excesso.
+### 2. `src/components/landing/Hero.tsx` (linha 14)
+Remover `overflow-hidden` da section do Hero, para que o card flutuante (com margem negativa) não seja cortado.
 
-## Ajustes propostos (mobile-first)
+Antes:
+```
+className="relative min-h-screen flex items-center bg-[#00A3D7] overflow-hidden pt-24"
+```
+Depois:
+```
+className="relative min-h-screen flex items-center bg-[#00A3D7] pt-24"
+```
+Os elementos decorativos internos do Hero já são `absolute inset-...` dentro de divs com `overflow-hidden` próprio, então a remoção é segura.
 
-**`src/components/landing/Resultados.tsx`**
-- Tornar os tamanhos mobile-first: número começa em `text-3xl` no celular e cresce para `text-4xl` em telas médias e `text-[44px]` no desktop (em vez de pular direto para `text-5xl`). Assim "+R$ 200mi" cabe sem invadir a divisória.
-- Aumentar o respiro horizontal de cada item no desktop (`lg:px-6`) para que mesmo o texto mais largo nunca encoste na linha divisória.
-- Manter `whitespace-nowrap` (a regra de não quebrar "+R$ 200mi" você já pediu).
-- Reduzir um pouco o rótulo no celular para acompanhar a hierarquia.
+### 3. Reescrever `src/components/landing/Resultados.tsx`
 
-**`src/components/landing/Hero.tsx`**
-- Adicionar `overflow-hidden` na `<section>` do Hero. Isso confina a composição circular decorativa e a imagem deslocada dentro da largura da tela, eliminando a rolagem horizontal no celular sem afetar nada visualmente no desktop.
+**Section wrapper**
+- `relative z-20 -mt-[60px] lg:-mt-20`
+- Sem background próprio (transparente), com padding inferior (`pb-12 lg:pb-16`) para dar respiro antes da próxima seção.
+- Container `max-w-5xl mx-auto px-5 lg:px-8`.
 
-**`src/styles.css`**
-- Adicionar `overflow-x: hidden` no `html, body` como rede de segurança, garantindo que nenhuma outra seção futura cause o mesmo problema.
+**Card**
+- `bg-[#1A1A2E] rounded-2xl shadow-xl px-6 py-10 lg:px-12 lg:py-12`
+- Grid: `grid grid-cols-2 lg:grid-cols-4 gap-y-8 lg:gap-y-0 lg:divide-x lg:divide-white/15`
+- Cada item: número em `#F5A623`, font display, `text-4xl sm:text-5xl lg:text-6xl`, bold; label em branco, uppercase, `tracking-[0.15em]`, `text-[11px] sm:text-xs font-semibold`.
+- Remover gradiente dark navy interno e a linha verde brilhante abaixo do card.
 
-## Validação
+**Animação count-up (sem dependências)**
+- Hook interno `useCountUp(target, { duration: 2000, start: boolean })` que:
+  - Se `prefers-reduced-motion` → retorna `target` imediatamente.
+  - Caso contrário, ao `start` virar `true`, usa `requestAnimationFrame` com easing `easeOutCubic` (`1 - Math.pow(1 - t, 3)`) por ~2s, atualizando state com `Math.round(target * eased)`.
+- Componente usa um `ref` no card + `IntersectionObserver` (threshold 0.3) que dispara `start = true` uma única vez, depois desconecta.
+- Cada item renderiza `prefix + value + suffix`:
+  - `+` / `300` / ``
+  - `+R$ ` / `200` / `mi`
+  - `+` / `40` / ``
+  - `` / `95` / `%`
 
-Depois das mudanças eu abro o preview em mobile (375px) e em desktop (1280px+) e confirmo:
-- Mobile: não há rolagem lateral, conteúdo cabe na tela.
-- Desktop: "+R$ 200mi" fica totalmente dentro da sua coluna, sem encostar na divisória.
+**SSR safety**
+- IntersectionObserver e matchMedia atrás de `typeof window !== 'undefined'`; valor inicial é `0` (ou `target` em reduced-motion), evitando mismatch grave — render inicial pode mostrar `0`, animação inicia ao montar/ver.
 
-## Observação
-
-O card já está responsivo (2 colunas no celular, 4 no desktop) — não vou trocar a estrutura, só ajustar tamanhos e respiros. Se você quiser uma versão diferente no celular (ex.: 1 coluna empilhada), me avise antes que eu mudo o layout também.
+### 4. Nada mais muda
+Demais componentes intactos. Animação GSAP `.gsap-fade-up` pode ser mantida no card para o fade-in do container.
