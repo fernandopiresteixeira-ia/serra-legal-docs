@@ -1,12 +1,10 @@
 import { createFileRoute, useNavigate } from "@tanstack/react-router";
 import { useState } from "react";
-import { useServerFn } from "@tanstack/react-start";
 import { supabase } from "@/integrations/supabase/client";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
 import { toast } from "sonner";
-import { ensureAdmin } from "@/lib/seedAdmin.functions";
 
 export const Route = createFileRoute("/admin/login")({
   ssr: false,
@@ -15,11 +13,10 @@ export const Route = createFileRoute("/admin/login")({
 
 function AdminLogin() {
   const navigate = useNavigate();
-  const seed = useServerFn(ensureAdmin);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
-  const [seeding, setSeeding] = useState(false);
+  const [resetting, setResetting] = useState(false);
 
   async function handleLogin(e: React.FormEvent) {
     e.preventDefault();
@@ -34,21 +31,22 @@ function AdminLogin() {
     navigate({ to: "/admin" });
   }
 
-  async function handleSeed() {
-    if (!email || !password) {
-      toast.error("Preencha e-mail e senha primeiro.");
+  async function handleResetPassword() {
+    if (!email) {
+      toast.error("Informe seu e-mail para receber o link de recuperação.");
       return;
     }
-    setSeeding(true);
-    try {
-      await seed({ data: { email, password } });
-      toast.success("Admin pronto. Tente entrar agora.");
-    } catch (err) {
-      console.error(err);
-      toast.error("Falha ao inicializar admin.");
-    } finally {
-      setSeeding(false);
+    setResetting(true);
+    const { error } = await supabase.auth.resetPasswordForEmail(email, {
+      redirectTo: `${window.location.origin}/admin/reset-password`,
+    });
+    setResetting(false);
+    if (error) {
+      console.error(error);
+      toast.error("Não foi possível enviar o e-mail. Tente novamente.");
+      return;
     }
+    toast.success("Enviamos um link de recuperação para o seu e-mail.");
   }
 
   return (
@@ -89,16 +87,14 @@ function AdminLogin() {
           >
             {loading ? "Entrando..." : "Entrar"}
           </Button>
-          <Button
+          <button
             type="button"
-            variant="outline"
-            disabled={seeding}
-            onClick={handleSeed}
-            className="w-full"
-            size="sm"
+            onClick={handleResetPassword}
+            disabled={resetting}
+            className="w-full text-sm text-[#0073C6] hover:underline disabled:opacity-60"
           >
-            {seeding ? "Inicializando..." : "Inicializar admin (primeiro acesso)"}
-          </Button>
+            {resetting ? "Enviando..." : "Esqueci minha senha"}
+          </button>
         </form>
       </div>
     </div>
