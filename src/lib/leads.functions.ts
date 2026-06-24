@@ -45,5 +45,28 @@ export const submitLead = createServerFn({ method: "POST" })
       console.error("[submitLead]", error);
       throw new Error("Não foi possível enviar agora. Tente novamente em instantes.");
     }
+
+    // Envio para RD Station — falha isolada não derruba o submit do lead.
+    try {
+      const { sendLeadToRdStation } = await import("./rdStation.server");
+      await sendLeadToRdStation({
+        nome: rest.nome,
+        email: rest.email,
+        telefone: rest.telefone,
+        tipo_servico: rest.tipo_servico,
+        mensagem: rest.mensagem ?? null,
+        cta_origem: rest.cta_origem ?? null,
+        utm_source: rest.utm_source ?? null,
+        utm_medium: rest.utm_medium ?? null,
+        utm_campaign: rest.utm_campaign ?? null,
+        utm_content: rest.utm_content ?? null,
+        utm_term: rest.utm_term ?? null,
+        referrer: rest.referrer ?? null,
+        conversion_identifier: "site-russell-bedford",
+      });
+    } catch (rdErr) {
+      console.error("[submitLead][rdStation]", rdErr);
+    }
+
     return { ok: true };
   });
