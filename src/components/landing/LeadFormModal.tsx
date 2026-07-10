@@ -92,6 +92,14 @@ export function LeadFormModal({ open, onOpenChange, ctaOrigem }: Props) {
     },
     onSuccess: () => {
       setStep("success");
+      if (typeof window !== "undefined") {
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: "form_lead_submitted",
+          cta_origem: ctaOrigem,
+          tipo_servico: form.tipo_servico,
+        });
+      }
     },
     onError: (err: Error) => {
       toast.error(err.message || "Erro ao enviar. Tente novamente.");
