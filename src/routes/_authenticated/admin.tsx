@@ -3,7 +3,7 @@ import { useState, useMemo } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import { supabase } from "@/integrations/supabase/client";
-import { listLeads, updateLead } from "@/lib/adminLeads.functions";
+import { listLeads, updateLead, listRdSyncLogs, resendLeadToRd } from "@/lib/adminLeads.functions";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
