@@ -121,6 +121,23 @@ function AdminDashboard() {
     onError: (e: Error) => toast.error(e.message),
   });
 
+  const logsQuery = useQuery({
+    queryKey: ["rd-logs", selected?.id],
+    queryFn: () => listLogs({ data: { lead_id: selected!.id } }),
+    enabled: !!selected,
+  });
+
+  const resendMutation = useMutation({
+    mutationFn: async (leadId: string) => resend({ data: { lead_id: leadId } }),
+    onSuccess: (result) => {
+      qc.invalidateQueries({ queryKey: ["rd-logs"] });
+      if (result.status === "success") toast.success("Enviado para RD Station!");
+      else if (result.status === "skipped") toast.warning(result.errorMessage ?? "Envio pulado");
+      else toast.error(`Falhou: ${result.errorMessage ?? "erro desconhecido"}`);
+    },
+    onError: (e: Error) => toast.error(e.message),
+  });
+
   async function handleLogout() {
     await supabase.auth.signOut();
     navigate({ to: "/admin/login" });
