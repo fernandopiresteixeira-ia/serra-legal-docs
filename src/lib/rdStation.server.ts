@@ -1,7 +1,7 @@
 // Server-only helper: envia conversões para a RD Station Marketing
 // usando o Token de API público (endpoint /platform/conversions).
 
-interface RdLeadInput {
+export interface RdLeadInput {
   nome: string;
   email: string;
   telefone: string;
@@ -17,11 +17,22 @@ interface RdLeadInput {
   conversion_identifier: string;
 }
 
-export async function sendLeadToRdStation(input: RdLeadInput): Promise<void> {
+export interface RdSyncResult {
+  status: "success" | "error" | "skipped";
+  httpStatus: number | null;
+  body: string | null;
+  errorMessage: string | null;
+}
+
+export async function sendLeadToRdStation(input: RdLeadInput): Promise<RdSyncResult> {
   const token = process.env.RD_STATION_TOKEN;
   if (!token) {
-    console.warn("[rdStation] RD_STATION_TOKEN ausente; pulando envio.");
-    return;
+    return {
+      status: "skipped",
+      httpStatus: null,
+      body: null,
+      errorMessage: "RD_STATION_TOKEN ausente no servidor",
+    };
   }
 
   const tags = [input.cta_origem, input.tipo_servico]
@@ -50,14 +61,33 @@ export async function sendLeadToRdStation(input: RdLeadInput): Promise<void> {
   };
 
   const url = `https://api.rd.services/platform/conversions?api_key=${encodeURIComponent(token)}`;
-  const res = await fetch(url, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(payload),
-  });
-
-  if (!res.ok) {
+  try {
+    const res = await fetch(url, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
+    });
     const text = await res.text().catch(() => "");
-    throw new Error(`RD Station respondeu ${res.status}: ${text.slice(0, 500)}`);
+    if (!res.ok) {
+      return {
+        status: "error",
+        httpStatus: res.status,
+        body: text.slice(0, 2000),
+        errorMessage: `RD respondeu ${res.status}`,
+      };
+    }
+    return {
+      status: "success",
+      httpStatus: res.status,
+      body: text.slice(0, 2000),
+      errorMessage: null,
+    };
+  } catch (err) {
+    return {
+      status: "error",
+      httpStatus: null,
+      body: null,
+      errorMessage: err instanceof Error ? err.message : String(err),
+    };
   }
 }
