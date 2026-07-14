@@ -1,74 +1,46 @@
+## Situação
+
+O lead da **Iza Arse** entrou em **13/07 às 12:18** (ontem). Os logs do servidor só ficam disponíveis pela última **1 hora**, então já não conseguimos ver o que aconteceu com aquele envio específico. Além disso, o código atual da integração RD Station **só imprime erro no console** — nada fica salvo em lugar nenhum. Ou seja: hoje não temos como responder com certeza "foi ou não foi" para nenhum lead antigo.
+
+Para resolver isso de vez, e ao mesmo tempo descobrir o que aconteceu com a Iza, proponho:
 
 ## O que vamos fazer
 
-Hoje, quando alguém preenche o formulário do site, o lead é salvo apenas no seu banco de dados (Lovable Cloud). Vamos adicionar um passo extra: **assim que o lead for salvo, ele também é enviado automaticamente para a RD Station Marketing**, aparecendo lá como um novo contato/conversão.
+### 1. Criar histórico de envios no banco
+Nova tabela `rd_station_sync_logs` guardando, para cada lead enviado:
+- lead_id
+- status (`success` / `error` / `skipped`)
+- código HTTP retornado pela RD (200, 400, 401, 422…)
+- corpo da resposta da RD (mensagem de erro, ex.: "email inválido", "conta bloqueada")
+- data/hora
+- tentativa (nº)
 
-A pessoa não percebe diferença nenhuma — continua preenchendo o mesmo formulário. A mágica acontece nos bastidores.
+Com RLS: só admin lê.
 
----
+### 2. Ajustar o envio para gravar esse log
+`rdStation.server.ts` passa a retornar sucesso/erro estruturado, e `submitLead` grava a linha em `rd_station_sync_logs` sempre (sucesso ou falha). A falha continua isolada — nunca derruba o cadastro do lead.
 
-## O que você precisa providenciar na RD Station
+### 3. Reenviar a Iza (e permitir reenviar qualquer lead)
+Criar botão **"Reenviar para RD Station"** na tela do admin de leads. Ao clicar:
+- puxa o lead do banco
+- chama a integração
+- grava mais uma linha no log
+- mostra na tela: enviado com sucesso / erro X
 
-Para conectar, preciso de **duas informações** que ficam dentro da sua conta RD Station:
+Assim, para responder sua pergunta agora, basta clicar em reenviar no lead da Iza — o resultado aparece na hora com o motivo exato caso a RD recuse.
 
-### 1. Um "Token de Integração" (chave de acesso)
-É como uma senha que autoriza o site a mandar dados pra RD. Você gera assim:
-
-- Entrar na RD Station Marketing
-- Menu do usuário (canto superior direito) → **Integrações** → **Apps e Integrações**
-- Procurar por **"Token de API público"** (ou "Public API Token")
-- Gerar um novo token e copiar o valor
-
-> Observação: a RD tem dois tipos de integração — Token Público (mais simples, ideal para o seu caso) e OAuth (mais complexo, exige criar um "app" no portal de desenvolvedores). Vou usar o **Token Público**, que resolve 100% do que você precisa: enviar leads e conversões.
-
-### 2. Um "Identificador de Conversão" (nome do evento)
-É o nome que vai aparecer na RD pra identificar de onde o lead veio. Sugestão:
-
-- `site-russell-bedford` (ou outro nome que você preferir)
-
-Esse nome a gente combina aqui no chat — você não precisa criar nada na RD, ele é criado automaticamente na primeira vez que um lead chegar.
-
----
-
-## O que eu vou configurar no site
-
-1. **Guardar o token com segurança** num cofre de segredos (não fica visível no código, ninguém de fora consegue ver).
-2. **Criar uma função no servidor** que, ao receber um lead novo, manda os dados pra RD Station via API oficial deles (`/platform/conversions`).
-3. **Mapear os campos** do formulário para os campos da RD:
-   - Nome → `name`
-   - E-mail → `email` (identificador principal na RD)
-   - Telefone → `mobile_phone`
-   - Tipo de serviço → tag ou campo personalizado
-   - Mensagem → campo personalizado
-   - UTMs (origem, campanha, etc.) → campos de tracking da RD
-   - CTA de origem → tag
-4. **Tratar falhas com segurança**: se a RD estiver fora do ar ou recusar o lead por algum motivo, o lead **continua sendo salvo no seu banco** (você não perde nenhum contato). A falha fica registrada num log pra eu poder investigar depois.
-5. **Não duplicar leads**: a RD usa o e-mail como chave única, então se a mesma pessoa preencher de novo, ela é atualizada (não vira contato novo).
-
----
+### 4. Ver o histórico dentro do admin
+No detalhe de cada lead, mostrar a lista de tentativas de envio (data, status, mensagem da RD). Passa a ser a fonte da verdade daqui pra frente.
 
 ## O que NÃO faz parte desse plano
 
-- Importar leads antigos que já estão no banco pra RD (posso fazer num passo separado se quiser).
-- Puxar dados da RD pra cá (fluxo é só de saída: site → RD).
-- Criar automações/fluxos dentro da RD (isso você configura lá na plataforma depois).
+- Aba "Integrações" para gerenciar tokens (API pública, privada, instância) — fica pra um passo separado, quando você quiser trocar/testar tokens.
+- Reprocessamento em massa (botão "reenviar todos os leads antigos") — posso adicionar depois se você quiser.
+- Retry automático em background.
 
----
+## Detalhes técnicos
 
-## Próximos passos
-
-Se aprovar o plano, eu vou:
-
-1. Pedir o **Token de API público da RD** num campo seguro (você cola e some da tela, não fica salvo em lugar nenhum visível).
-2. Confirmar com você o **nome do identificador de conversão** (sugestão: `site-russell-bedford`).
-3. Implementar a integração e testar enviando um lead de teste pra você conferir se aparece na RD.
-
----
-
-## Detalhes técnicos (para referência)
-
-- Endpoint: `POST https://api.rd.services/platform/conversions?api_key={TOKEN}`
-- Payload: `{ event_type: "CONVERSION", event_family: "CDP", payload: { conversion_identifier, email, name, mobile_phone, cf_tipo_servico, cf_mensagem, traffic_source, traffic_medium, traffic_campaign, tags: [cta_origem, tipo_servico] } }`
-- Chamado dentro de `submitLead` em `src/lib/leads.functions.ts`, **após** o insert no Supabase, dentro de try/catch isolado (falha da RD não derruba o submit).
-- Segredo armazenado como `RD_STATION_TOKEN` via `add_secret`, lido com `process.env.RD_STATION_TOKEN` dentro do handler.
-- Sem retry/queue nessa primeira versão; se virar problema, depois movemos pra fila assíncrona.
+- Migration cria `public.rd_station_sync_logs` com GRANT para `authenticated` (SELECT) e `service_role` (ALL); RLS com policy `has_role(auth.uid(),'admin')` no SELECT. Insert é feito pelo `supabaseAdmin` no servidor.
+- `sendLeadToRdStation` passa a retornar `{ ok, status, body }` em vez de `throw`; `submitLead` insere log com `lead_id` do insert (mudar o insert para `.select('id').single()`).
+- Novo `resendLeadToRdStation` (server fn com `requireSupabaseAuth` + checagem `has_role admin`) recebe `lead_id`, refaz o payload a partir da linha da tabela `leads` e grava novo log.
+- Admin dashboard: coluna extra "RD" com badge do último status + botão de reenviar; drawer/expand com histórico completo.

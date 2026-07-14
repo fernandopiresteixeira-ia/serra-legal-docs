@@ -80,6 +80,47 @@ export type Database = {
         }
         Relationships: []
       }
+      rd_station_sync_logs: {
+        Row: {
+          attempt: number
+          created_at: string
+          error_message: string | null
+          http_status: number | null
+          id: string
+          lead_id: string | null
+          response_body: string | null
+          status: string
+        }
+        Insert: {
+          attempt?: number
+          created_at?: string
+          error_message?: string | null
+          http_status?: number | null
+          id?: string
+          lead_id?: string | null
+          response_body?: string | null
+          status: string
+        }
+        Update: {
+          attempt?: number
+          created_at?: string
+          error_message?: string | null
+          http_status?: number | null
+          id?: string
+          lead_id?: string | null
+          response_body?: string | null
+          status?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "rd_station_sync_logs_lead_id_fkey"
+            columns: ["lead_id"]
+            isOneToOne: false
+            referencedRelation: "leads"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
       user_roles: {
         Row: {
           created_at: string

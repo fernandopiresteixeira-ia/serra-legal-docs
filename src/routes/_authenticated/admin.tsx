@@ -3,7 +3,7 @@ import { useState, useMemo } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useServerFn } from "@tanstack/react-start";
 import { supabase } from "@/integrations/supabase/client";
-import { listLeads, updateLead } from "@/lib/adminLeads.functions";
+import { listLeads, updateLead, listRdSyncLogs, resendLeadToRd } from "@/lib/adminLeads.functions";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -77,6 +77,8 @@ function AdminDashboard() {
   const qc = useQueryClient();
   const list = useServerFn(listLeads);
   const update = useServerFn(updateLead);
+  const listLogs = useServerFn(listRdSyncLogs);
+  const resend = useServerFn(resendLeadToRd);
 
   const [status, setStatus] = useState<string>("all");
   const [search, setSearch] = useState("");
@@ -115,6 +117,23 @@ function AdminDashboard() {
     onSuccess: () => {
       qc.invalidateQueries({ queryKey: ["leads"] });
       toast.success("Atualizado");
+    },
+    onError: (e: Error) => toast.error(e.message),
+  });
+
+  const logsQuery = useQuery({
+    queryKey: ["rd-logs", selected?.id],
+    queryFn: () => listLogs({ data: { lead_id: selected!.id } }),
+    enabled: !!selected,
+  });
+
+  const resendMutation = useMutation({
+    mutationFn: async (leadId: string) => resend({ data: { lead_id: leadId } }),
+    onSuccess: (result) => {
+      qc.invalidateQueries({ queryKey: ["rd-logs"] });
+      if (result.status === "success") toast.success("Enviado para RD Station!");
+      else if (result.status === "skipped") toast.warning(result.errorMessage ?? "Envio pulado");
+      else toast.error(`Falhou: ${result.errorMessage ?? "erro desconhecido"}`);
     },
     onError: (e: Error) => toast.error(e.message),
   });
@@ -328,6 +347,66 @@ function AdminDashboard() {
                   {selected.dispositivo && <Info label="Dispositivo" value={selected.dispositivo} />}
                   {selected.referrer && <Info label="Referrer" value={selected.referrer} multiline />}
                 </div>
+
+                <div className="border-t pt-4">
+                  <div className="flex items-center justify-between mb-2">
+                    <p className="font-semibold text-xs uppercase text-muted-foreground">
+                      RD Station
+                    </p>
+                    <Button
+                      size="sm"
+                      variant="outline"
+                      onClick={() => resendMutation.mutate(selected.id)}
+                      disabled={resendMutation.isPending}
+                    >
+                      <Icon icon="solar:refresh-linear" className="w-4 h-4" />
+                      {resendMutation.isPending ? "Enviando..." : "Reenviar"}
+                    </Button>
+                  </div>
+                  {logsQuery.isLoading ? (
+                    <p className="text-xs text-muted-foreground">Carregando histórico...</p>
+                  ) : (logsQuery.data?.logs ?? []).length === 0 ? (
+                    <p className="text-xs text-muted-foreground">
+                      Nenhum envio registrado. Clique em Reenviar para tentar agora.
+                    </p>
+                  ) : (
+                    <ul className="space-y-2">
+                      {(logsQuery.data?.logs ?? []).map((log) => {
+                        const s = log.status as string;
+                        const cls =
+                          s === "success"
+                            ? "bg-green-100 text-green-800"
+                            : s === "skipped"
+                              ? "bg-amber-100 text-amber-800"
+                              : "bg-red-100 text-red-800";
+                        return (
+                          <li key={log.id as string} className="text-xs border rounded-md p-2">
+                            <div className="flex items-center justify-between gap-2">
+                              <Badge className={cls}>
+                                {s === "success" ? "Enviado" : s === "skipped" ? "Pulado" : "Erro"}
+                                {log.http_status ? ` · ${log.http_status}` : ""}
+                              </Badge>
+                              <span className="text-muted-foreground">
+                                {new Date(log.created_at as string).toLocaleString("pt-BR")}
+                              </span>
+                            </div>
+                            {log.error_message ? (
+                              <p className="mt-1 text-red-700 break-words">
+                                {log.error_message as string}
+                              </p>
+                            ) : null}
+                            {log.response_body ? (
+                              <p className="mt-1 text-muted-foreground break-words whitespace-pre-wrap">
+                                {(log.response_body as string).slice(0, 300)}
+                              </p>
+                            ) : null}
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  )}
+                </div>
+
 
                 <div className="border-t pt-4">
                   <Label className="text-xs uppercase text-muted-foreground">Status</Label>
