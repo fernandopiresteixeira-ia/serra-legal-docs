@@ -77,6 +77,8 @@ function AdminDashboard() {
   const qc = useQueryClient();
   const list = useServerFn(listLeads);
   const update = useServerFn(updateLead);
+  const listLogs = useServerFn(listRdSyncLogs);
+  const resend = useServerFn(resendLeadToRd);
 
   const [status, setStatus] = useState<string>("all");
   const [search, setSearch] = useState("");
