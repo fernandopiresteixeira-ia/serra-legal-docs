@@ -40,8 +40,12 @@ export const submitLead = createServerFn({ method: "POST" })
       ...rest,
       user_agent: rest.user_agent ? `${rest.user_agent}${ip ? ` | ip:${ip}` : ""}` : ip,
     };
-    const { error } = await supabaseAdmin.from("leads").insert(insertRow);
-    if (error) {
+    const { data: inserted, error } = await supabaseAdmin
+      .from("leads")
+      .insert(insertRow)
+      .select("id")
+      .single();
+    if (error || !inserted) {
       console.error("[submitLead]", error);
       throw new Error("Não foi possível enviar agora. Tente novamente em instantes.");
     }
@@ -49,7 +53,7 @@ export const submitLead = createServerFn({ method: "POST" })
     // Envio para RD Station — falha isolada não derruba o submit do lead.
     try {
       const { sendLeadToRdStation } = await import("./rdStation.server");
-      await sendLeadToRdStation({
+      const result = await sendLeadToRdStation({
         nome: rest.nome,
         email: rest.email,
         telefone: rest.telefone,
@@ -64,8 +68,28 @@ export const submitLead = createServerFn({ method: "POST" })
         referrer: rest.referrer ?? null,
         conversion_identifier: "site-russell-bedford",
       });
+      await supabaseAdmin.from("rd_station_sync_logs").insert({
+        lead_id: inserted.id,
+        status: result.status,
+        http_status: result.httpStatus,
+        response_body: result.body,
+        error_message: result.errorMessage,
+        attempt: 1,
+      });
     } catch (rdErr) {
       console.error("[submitLead][rdStation]", rdErr);
+      try {
+        await supabaseAdmin.from("rd_station_sync_logs").insert({
+          lead_id: inserted.id,
+          status: "error",
+          http_status: null,
+          response_body: null,
+          error_message: rdErr instanceof Error ? rdErr.message : String(rdErr),
+          attempt: 1,
+        });
+      } catch {
+        // ignore
+      }
     }
 
     return { ok: true };
