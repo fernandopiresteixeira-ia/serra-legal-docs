@@ -1,11 +1,9 @@
 import { Icon } from "@iconify/react";
-import { useState } from "react";
 import HeroWave from "@/components/ui/dynamic-wave-canvas-background";
 import heroBg from "@/assets/hero-construcao.jpg";
-import { LeadFormModal } from "@/components/landing/LeadFormModal";
+import { LeadFormInline } from "@/components/landing/LeadFormInline";
 
 export function HeroAlvara() {
-  const [open, setOpen] = useState(false);
   return (
     <section id="top" className="relative min-h-screen flex items-center bg-[#00A3D7] pt-24">
       <img src={heroBg} alt="" aria-hidden="true"
@@ -29,12 +27,12 @@ export function HeroAlvara() {
             A Russell Bedford Brasil cuida de toda a aprovação de projeto e licença de construção junto à Prefeitura de Caxias do Sul — do protocolo ao alvará em mãos, sem você precisar ir a nenhuma repartição.
           </p>
 
-          <div className="mt-10 flex flex-col sm:flex-row items-start sm:items-center gap-3">
-            <button type="button" onClick={() => setOpen(true)}
+          <div className="mt-10 flex flex-col sm:flex-row items-start sm:items-center gap-3 lg:hidden">
+            <a href="#form-inline"
               className="group inline-flex items-center gap-2 rounded-lg bg-[#F5A623] px-6 py-3.5 text-sm font-semibold text-[#1A1A2E] hover:bg-[#E69612] transition-all shadow-lg shadow-[#F5A623]/20">
               Solicitar análise gratuita
               <Icon icon="solar:arrow-right-linear" className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </button>
+            </a>
           </div>
 
           <div className="mt-12 flex flex-wrap items-center gap-x-8 gap-y-3 text-xs sm:text-sm text-white/80">
@@ -47,29 +45,15 @@ export function HeroAlvara() {
           </div>
         </div>
 
-        <div className="lg:col-span-4 flex justify-center lg:justify-end">
-          <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 max-w-sm w-full">
-            <h3 className="font-display font-semibold text-white text-lg mb-4">O que cuidamos por você:</h3>
-            <ul className="space-y-3">
-              {[
-                "Aprovação do projeto arquitetônico na Prefeitura",
-                "Projetos complementares (hidro, elétrico, estrutural)",
-                "ART / RRT de todos os responsáveis técnicos",
-                "Protocolo e acompanhamento no SMUWEB",
-                "Licença para construir (Alvará)",
-                "Habite-se após conclusão da obra",
-              ].map((item) => (
-                <li key={item} className="flex gap-3 text-white/90 text-sm">
-                  <Icon icon="solar:check-circle-bold" className="w-4 h-4 text-[#F5A623] shrink-0 mt-0.5" />
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
+        <div id="form-inline" className="lg:col-span-4 flex justify-center lg:justify-end">
+          <LeadFormInline
+            ctaOrigem="hero-alvara"
+            tipoServico="Aprovação de Projetos"
+            title="Análise gratuita do seu caso"
+            subtitle="Sem compromisso. Retorno em até 2h."
+          />
         </div>
       </div>
-
-      <LeadFormModal open={open} onOpenChange={setOpen} ctaOrigem="hero-alvara" />
     </section>
   );
 }

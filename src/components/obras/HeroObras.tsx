@@ -1,12 +1,9 @@
 import { Icon } from "@iconify/react";
-import { useState } from "react";
 import HeroWave from "@/components/ui/dynamic-wave-canvas-background";
 import heroBg from "@/assets/hero-construcao.jpg";
-import { LeadFormModal } from "@/components/landing/LeadFormModal";
+import { LeadFormInline } from "@/components/landing/LeadFormInline";
 
 export function HeroObras() {
-  const [open, setOpen] = useState(false);
-
   return (
     <section id="top" className="relative min-h-screen flex items-center bg-[#00A3D7] pt-24">
       <img src={heroBg} alt="" aria-hidden="true"
@@ -30,12 +27,12 @@ export function HeroObras() {
             A Russell Bedford Brasil coloca um engenheiro independente acompanhando cada fase da sua obra — identificando erros antes que virem impossíveis de corrigir, sem você precisar brigar com a construtora.
           </p>
 
-          <div className="mt-10 flex flex-col sm:flex-row items-start sm:items-center gap-3">
-            <button type="button" onClick={() => setOpen(true)}
+          <div className="mt-10 flex flex-col sm:flex-row items-start sm:items-center gap-3 lg:hidden">
+            <a href="#form-inline"
               className="group inline-flex items-center gap-2 rounded-lg bg-[#F5A623] px-6 py-3.5 text-sm font-semibold text-[#1A1A2E] hover:bg-[#E69612] transition-all shadow-lg shadow-[#F5A623]/20">
               Solicitar análise gratuita
               <Icon icon="solar:arrow-right-linear" className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </button>
+            </a>
           </div>
 
           <div className="mt-12 flex flex-wrap items-center gap-x-8 gap-y-3 text-xs sm:text-sm text-white/80">
@@ -48,29 +45,15 @@ export function HeroObras() {
           </div>
         </div>
 
-        <div className="lg:col-span-4 flex justify-center lg:justify-end">
-          <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 max-w-sm w-full">
-            <h3 className="font-display font-semibold text-white text-lg mb-4">O que nosso fiscal faz por você:</h3>
-            <ul className="space-y-3">
-              {[
-                "Visitas em cada fase crítica da obra",
-                "Relatório fotográfico com não-conformidades",
-                "Notificação técnica à construtora quando necessário",
-                "Poder de paralisar serviço irregular",
-                "Acompanhamento até o Habite-se",
-                "Você recebe tudo no WhatsApp no mesmo dia",
-              ].map(item => (
-                <li key={item} className="flex gap-3 text-white/90 text-sm">
-                  <Icon icon="solar:check-circle-bold" className="w-4 h-4 text-[#F5A623] shrink-0 mt-0.5" />
-                  {item}
-                </li>
-              ))}
-            </ul>
-          </div>
+        <div id="form-inline" className="lg:col-span-4 flex justify-center lg:justify-end">
+          <LeadFormInline
+            ctaOrigem="hero-obras"
+            tipoServico="Acompanhamento de Obra"
+            title="Análise gratuita do seu caso"
+            subtitle="Engenheiro entra em contato em até 2h."
+          />
         </div>
       </div>
-
-      <LeadFormModal open={open} onOpenChange={setOpen} ctaOrigem="hero-obras" />
     </section>
   );
 }
