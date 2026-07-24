@@ -6,7 +6,6 @@ import { ProvasSociaisObras } from "@/components/obras/ProvasSociaisObras";
 import { DorObras } from "@/components/obras/DorObras";
 import { ComoFuncionaObras } from "@/components/obras/ComoFuncionaObras";
 import { DiferenciaisObras } from "@/components/obras/DiferenciaisObras";
-import { PrecoObras } from "@/components/obras/PrecoObras";
 import { FaqObras } from "@/components/obras/FaqObras";
 import { CtaObras } from "@/components/obras/CtaObras";
 
@@ -40,7 +39,6 @@ function ObrasPage() {
         <DorObras />
         <ComoFuncionaObras />
         <DiferenciaisObras />
-        <PrecoObras />
         <FaqObras />
         <CtaObras />
       </main>

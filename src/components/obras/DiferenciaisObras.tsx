@@ -8,8 +8,8 @@ const diferenciais = [
   },
   {
     icon: "solar:dollar-minimalistic-bold",
-    titulo: "Preço transparente antes de assinar",
-    desc: "Nenhum concorrente nosso divulga preço. Nós sim: a partir de R$ 900/mês para obras residenciais. Você sabe o que paga desde o início.",
+    titulo: "Orçamento fechado antes de começar",
+    desc: "Você recebe proposta com escopo, visitas e prazo definidos antes de assinar qualquer contrato. Sem surpresas no meio do caminho.",
   },
   {
     icon: "solar:clock-circle-bold",
@@ -35,7 +35,7 @@ const diferenciais = [
 
 const tabela = [
   { item: "Fiscal independente (não da construtora)", nos: true, eles: false },
-  { item: "Preço divulgado antes de contratar", nos: true, eles: false },
+  { item: "Orçamento fechado antes de assinar contrato", nos: true, eles: false },
   { item: "Relatório por WhatsApp no dia da visita", nos: true, eles: false },
   { item: "ART por visita técnica", nos: true, eles: false },
   { item: "Garantia explícita de descoberta", nos: true, eles: false },
