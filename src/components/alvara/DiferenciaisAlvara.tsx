@@ -48,7 +48,7 @@ export function DiferenciaisAlvara() {
       <div className="absolute -bottom-64 -left-32 w-[600px] h-[600px] rounded-full bg-[#0073C6] opacity-10 blur-[180px] pointer-events-none" />
 
       <div className="relative max-w-7xl mx-auto px-5 lg:px-8">
-        <div className="gsap-fade-up max-w-3xl mx-auto text-center mb-16">
+        <div className="max-w-3xl mx-auto text-center mb-16">
           <span className="text-xs font-semibold uppercase tracking-[0.18em] text-[#F5A623]">Por que a Russell Bedford</span>
           <h2 className="mt-3 font-display font-semibold text-3xl sm:text-4xl lg:text-[44px] leading-tight text-white">
             O que nos diferencia dos concorrentes
@@ -60,7 +60,7 @@ export function DiferenciaisAlvara() {
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 mb-20">
           {diferenciais.map((d) => (
-            <div key={d.title} className="gsap-fade-up bg-white/5 border border-white/10 rounded-2xl p-7 hover:bg-white/8 transition-colors">
+            <div key={d.title} className="bg-white/5 border border-white/10 rounded-2xl p-7 hover:bg-white/8 transition-colors">
               <div className="w-12 h-12 rounded-xl bg-[#0073C6]/20 flex items-center justify-center mb-5">
                 <Icon icon={d.icon} className="w-6 h-6 text-[#4EC5E8]" />
               </div>
@@ -70,7 +70,7 @@ export function DiferenciaisAlvara() {
           ))}
         </div>
 
-        <div className="gsap-fade-up bg-white/5 border border-white/10 rounded-2xl overflow-hidden max-w-3xl mx-auto">
+        <div className="bg-white/5 border border-white/10 rounded-2xl overflow-hidden max-w-3xl mx-auto">
           <div className="grid grid-cols-3 text-sm font-semibold text-center py-4 border-b border-white/10">
             <span className="text-white/40 col-span-1 px-4 text-left">Critério</span>
             <span className="text-[#4EC5E8]">Russell Bedford</span>

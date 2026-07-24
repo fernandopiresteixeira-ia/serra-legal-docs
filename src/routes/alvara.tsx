@@ -1,9 +1,4 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { useEffect } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import Lenis from "lenis";
-
 import { Header } from "@/components/landing/Header";
 import { Footer } from "@/components/landing/Footer";
 import { HeroAlvara } from "@/components/alvara/HeroAlvara";
@@ -34,33 +29,6 @@ export const Route = createFileRoute("/alvara")({
 });
 
 function AlvaraPage() {
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-    gsap.registerPlugin(ScrollTrigger);
-
-    const lenis = new Lenis({ duration: 1.2, easing: (t) => 1 - Math.pow(1 - t, 4) });
-    function raf(time: number) {
-      lenis.raf(time);
-      requestAnimationFrame(raf);
-    }
-    requestAnimationFrame(raf);
-
-    gsap.utils.toArray<HTMLElement>(".gsap-fade-up").forEach((el) => {
-      gsap.from(el, {
-        opacity: 0,
-        y: 40,
-        duration: 0.8,
-        ease: "power3.out",
-        scrollTrigger: { trigger: el, start: "top 88%", once: true },
-      });
-    });
-
-    return () => {
-      lenis.destroy();
-      ScrollTrigger.getAll().forEach((t) => t.kill());
-    };
-  }, []);
-
   return (
     <>
       <Header />

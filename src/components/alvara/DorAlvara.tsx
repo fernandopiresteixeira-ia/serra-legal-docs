@@ -22,7 +22,7 @@ export function DorAlvara() {
   return (
     <section className="bg-[#F4F6F9] border-y border-[#E0EAF4] py-24 lg:py-32">
       <div className="max-w-7xl mx-auto px-5 lg:px-8">
-        <div className="gsap-fade-up max-w-3xl mx-auto text-center mb-14">
+        <div className="max-w-3xl mx-auto text-center mb-14">
           <h2 className="font-display font-semibold text-3xl sm:text-4xl lg:text-[44px] leading-tight text-[#1A1A2E]">
             Você está passando por alguma dessas situações?
           </h2>
@@ -32,7 +32,7 @@ export function DorAlvara() {
         </div>
 
         <div className="grid md:grid-cols-2 gap-6">
-          <div className="gsap-fade-up bg-white border border-[#E0EAF4] rounded-2xl p-8 relative overflow-hidden">
+          <div className="bg-white border border-[#E0EAF4] rounded-2xl p-8 relative overflow-hidden">
             <span className="absolute left-0 top-0 bottom-0 w-1 bg-[#EF4444]" />
             <div className="flex items-center gap-4 mb-6">
               <div className="w-12 h-12 rounded-full bg-red-50 flex items-center justify-center">
@@ -50,7 +50,7 @@ export function DorAlvara() {
             </ul>
           </div>
 
-          <div className="gsap-fade-up bg-white border border-[#E0EAF4] rounded-2xl p-8 relative overflow-hidden">
+          <div className="bg-white border border-[#E0EAF4] rounded-2xl p-8 relative overflow-hidden">
             <span className="absolute left-0 top-0 bottom-0 w-1 bg-[#F5A623]" />
             <div className="flex items-center gap-4 mb-6">
               <div className="w-12 h-12 rounded-full bg-orange-50 flex items-center justify-center">

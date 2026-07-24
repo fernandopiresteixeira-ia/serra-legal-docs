@@ -16,20 +16,20 @@ export function HeroAlvara() {
 
       <div className="relative z-10 w-full max-w-7xl mx-auto px-6 lg:px-8 py-12 lg:py-20 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
         <div className="lg:col-span-8 text-left">
-          <div className="gsap-reveal inline-flex items-center rounded-full bg-[#F5A623] px-4 py-1.5 text-xs sm:text-sm font-medium text-[#1A1A2E] mb-8">
+          <div className="inline-flex items-center rounded-full bg-[#F5A623] px-4 py-1.5 text-xs sm:text-sm font-medium text-[#1A1A2E] mb-8">
             Alvará de Construção · Caxias do Sul e Serra Gaúcha - RS
           </div>
 
           <h1 className="font-display font-bold leading-[1.05] text-white text-[40px] sm:text-5xl lg:text-[64px] tracking-tight">
-            <span className="gsap-reveal block">Sem alvará, sua obra</span>
-            <span className="gsap-reveal block text-[#B8D9F0]">pode ser embargada amanhã.</span>
+            <span className="block">Sem alvará, sua obra</span>
+            <span className="block text-[#B8D9F0]">pode ser embargada amanhã.</span>
           </h1>
 
-          <p className="gsap-reveal mt-8 max-w-xl text-white/85 text-base sm:text-lg leading-relaxed">
+          <p className="mt-8 max-w-xl text-white/85 text-base sm:text-lg leading-relaxed">
             A Russell Bedford Brasil cuida de toda a aprovação de projeto e licença de construção junto à Prefeitura de Caxias do Sul — do protocolo ao alvará em mãos, sem você precisar ir a nenhuma repartição.
           </p>
 
-          <div className="gsap-reveal mt-10 flex flex-col sm:flex-row items-start sm:items-center gap-3">
+          <div className="mt-10 flex flex-col sm:flex-row items-start sm:items-center gap-3">
             <button type="button" onClick={() => setOpen(true)}
               className="group inline-flex items-center gap-2 rounded-lg bg-[#F5A623] px-6 py-3.5 text-sm font-semibold text-[#1A1A2E] hover:bg-[#E69612] transition-all shadow-lg shadow-[#F5A623]/20">
               Solicitar análise gratuita
@@ -37,7 +37,7 @@ export function HeroAlvara() {
             </button>
           </div>
 
-          <div className="gsap-reveal mt-12 flex flex-wrap items-center gap-x-8 gap-y-3 text-xs sm:text-sm text-white/80">
+          <div className="mt-12 flex flex-wrap items-center gap-x-8 gap-y-3 text-xs sm:text-sm text-white/80">
             {["Análise inicial sem custo", "Caxias do Sul, Bento Gonçalves, Farroupilha e região", "Você não precisa ir à Prefeitura"].map((t) => (
               <span key={t} className="inline-flex items-center gap-2">
                 <Icon icon="solar:check-circle-bold" className="w-4 h-4 text-white" />

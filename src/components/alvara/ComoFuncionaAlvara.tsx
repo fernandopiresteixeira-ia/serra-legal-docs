@@ -15,7 +15,7 @@ export function ComoFuncionaAlvara() {
       <div className="absolute -top-32 -right-32 w-[500px] h-[500px] rounded-full bg-[#0073C6] opacity-[0.06] blur-[150px] pointer-events-none" />
 
       <div className="relative max-w-7xl mx-auto px-5 lg:px-8">
-        <div className="gsap-fade-up max-w-3xl mx-auto text-center mb-16">
+        <div className="max-w-3xl mx-auto text-center mb-16">
           <span className="text-xs font-semibold uppercase tracking-[0.18em] text-[#0073C6]">Como funciona</span>
           <h2 className="mt-3 font-display font-semibold text-3xl sm:text-4xl lg:text-[44px] leading-tight text-[#1A1A2E]">
             Do diagnóstico ao alvará em mãos
@@ -27,7 +27,7 @@ export function ComoFuncionaAlvara() {
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {steps.map((s, i) => (
-            <article key={s.n} className="gsap-fade-up relative bg-[#F4F6F9] border border-[#E0EAF4] rounded-2xl p-8">
+            <article key={s.n} className="relative bg-[#F4F6F9] border border-[#E0EAF4] rounded-2xl p-8">
               <div className={`absolute -top-4 -left-4 w-10 h-10 rounded-lg flex items-center justify-center text-sm font-bold ${i === 0 ? "bg-[#F5A623] text-[#1A1A2E]" : "bg-[#0073C6] text-white"}`}>
                 {s.n}
               </div>
@@ -38,7 +38,7 @@ export function ComoFuncionaAlvara() {
           ))}
         </div>
 
-        <p className="gsap-fade-up mt-10 text-center text-sm italic text-[#4A4A5A]">
+        <p className="mt-10 text-center text-sm italic text-[#4A4A5A]">
           ⚠️ O prazo legal em Caxias do Sul é de 30 dias úteis. Com documentação completa na primeira entrega, o prazo é cumprido.
         </p>
       </div>

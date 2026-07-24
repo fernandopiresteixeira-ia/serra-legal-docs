@@ -46,7 +46,7 @@ export function FaqAlvara() {
   return (
     <section className="bg-[#F4F6F9] border-t border-[#E0EAF4] py-24 lg:py-32">
       <div className="max-w-3xl mx-auto px-5 lg:px-8">
-        <div className="gsap-fade-up text-center mb-14">
+        <div className="text-center mb-14">
           <span className="text-xs font-semibold uppercase tracking-[0.18em] text-[#0073C6]">Dúvidas frequentes</span>
           <h2 className="mt-3 font-display font-semibold text-3xl sm:text-4xl lg:text-[44px] leading-tight text-[#1A1A2E]">
             Perguntas sobre alvará de construção
@@ -55,7 +55,7 @@ export function FaqAlvara() {
 
         <div className="space-y-3">
           {faqs.map((faq, i) => (
-            <div key={i} className="gsap-fade-up bg-white border border-[#E0EAF4] rounded-xl overflow-hidden">
+            <div key={i} className="bg-white border border-[#E0EAF4] rounded-xl overflow-hidden">
               <button
                 type="button"
                 onClick={() => setOpen(open === i ? null : i)}
